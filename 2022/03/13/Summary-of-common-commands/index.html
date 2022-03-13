@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>Summary of common commands | March 13th&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Summary of common commands</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 13, 2022&nbsp;&nbsp;22:25:43</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Commands/">Commands</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>###Linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ls -t #sort by modification time, newest first</span><br><span class="line">man -k passwd #keyword search,Regular expressions can be used</span><br><span class="line">grep/sed/cut/awk</span><br><span class="line">comm #compare files</span><br><span class="line">usermod -L username #lock a user&#x27;s password</span><br><span class="line">passwd -l username #lock a user&#x27;s password</span><br><span class="line">change -E #lock a user&#x27;s password</span><br><span class="line">usermod -s #change the default shell of a user</span><br><span class="line">passwd --status username # confirm user&#x27;s account locked or not</span><br><span class="line">chage -l username #confirm that the account expired or not</span><br><span class="line">sudo -l # list the allowed commands for the current user</span><br><span class="line">su -l username -c &quot;command&quot; #execute a single command as the target user</span><br><span class="line">setuid/setgid</span><br><span class="line">ps -aux|sort -k4nr|head -4 #process memory usage</span><br><span class="line">tailf -f -n5</span><br><span class="line">sudo crontab -u [username] -l # list cron jobs that belong to a specific user</span><br><span class="line">apt update</span><br><span class="line">apt upgrade xxxxx #In order to upgrade a single package</span><br><span class="line">apt-cache search</span><br><span class="line">apt instal package_name</span><br><span class="line">apt remove --purge #remove all leftovers</span><br><span class="line">apt autoremove #removing package dependencies</span><br><span class="line">dpkg [-i(install)] xxx.deb</span><br><span class="line">dmesg #retrieve the kernel logs</span><br><span class="line">journalctl [-u]</span><br><span class="line">mount -t ext4</span><br><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line">sudo tcpdump -r arp_and_icmp.pcap arp </span><br><span class="line">sudo tcpdump -r arp_and_icmp.pcap not icmp</span><br></pre></td></tr></table></figure>
+
+
+<p>###Windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">systeminfo # extracting detailed configuration information</span><br><span class="line">wmic: wmic qfe list brief #list patch</span><br><span class="line">powershell: Get-WmiObject -class win32_quickfixengineering #list patch</span><br><span class="line">sysinternals: psinfo /accepteula(first time use it)</span><br><span class="line">echo 2&gt; xxx.txt #Create an empty file</span><br><span class="line">del</span><br><span class="line">rmdir(/s option) </span><br><span class="line">rename(ren)</span><br><span class="line">move</span><br><span class="line">copy</span><br><span class="line">mklink #Create a symbolic link，/h option Create a hard link</span><br><span class="line">fsutil hardlink list xxx.txt #View link path</span><br><span class="line">dir /s *.exe /p</span><br><span class="line">forfiles /P C:\Windows /S /M notepad.exe /c &quot;cmd /c echo @PATH&quot; </span><br><span class="line">find /C &quot;content&quot; xxx.txt #count occurrences</span><br><span class="line">FIND /N /I &quot;content&quot; xxx.txt|FIND &quot;101&quot; #View 101 lines of content</span><br><span class="line">findstr /n .* xxx.txt|findstr &quot;^5[1-9] | ^6[0-9]&quot; #Find lines 51-69</span><br><span class="line">whoami /user #View current user sid</span><br><span class="line">net with no arguments #a list of subcommands as output</span><br><span class="line">net help #usage information</span><br><span class="line">net user /add username passwd #create a new local user </span><br><span class="line">net localgroup #retrieve local group information on our system.</span><br><span class="line">net localgroup Administrators user /add #add user to the Administrators group</span><br><span class="line"> net localgroup Administrators user /del #removing user from the Administrators group</span><br><span class="line">net user /del user #deleting the account.</span><br><span class="line">net accounts #display or set account policies.</span><br><span class="line"></span><br><span class="line">Cmd /c</span><br><span class="line">runas</span><br><span class="line"></span><br><span class="line">tasklist /fi &quot;USERNAME eq NT AUTHORITY\SYSTEM&quot; /fi &quot;STATUS eq running&quot;</span><br><span class="line">tasklist /fi &quot;imagename eq cmd.exe&quot; ========= tasklist |find &quot;cmd.exe&quot;</span><br><span class="line">taskkill /pid 66</span><br><span class="line">Vmic: wmic process where processid=7028 get parentprocessid #List the parent process of a process</span><br><span class="line">Powershell: Get-CimInstance Win32_Process -Filter &quot;name=&#x27;cmd.exe&#x27;&quot;|select parentprocessid  #List the parent process of a process</span><br><span class="line">sysinternals: pslist pkill+pid pssuspend listdlls</span><br><span class="line"></span><br><span class="line">reg query hkcu\software\microsoft\windows\currentversion\runonce</span><br><span class="line">reg delete hkcu\software\microsoft\windows\currentversion\run /va</span><br><span class="line">reg add hkcu\software\microsoft\windows\currentversion\run /v OneDrive /t REG_SZ /d &quot;C:\Users\username\AppData\Local\Microsoft\OneDrive\OneDrive.exe&quot;</span><br><span class="line">reg export hkcu\environment environment</span><br><span class="line"></span><br><span class="line">schtasks /change /tr C:\Users\username\Desktop\runasadmin.exe /tn RunAsSystem </span><br><span class="line">schtasks /query /tn RunAsSystem</span><br><span class="line">schtasks /run /tn RunAsSystem</span><br><span class="line">schtasks /create /tn binarycommandments /tr C:\Windows\System32\cmd.exe /sc onstart</span><br><span class="line"></span><br><span class="line">fsutil fsinfo drives【find all the drives on our machine with the drives subcommand】</span><br><span class="line">fsutil fsinfo drivetype c: 55</span><br><span class="line">fsutil fsinfo volumeinfo C:</span><br><span class="line"></span><br><span class="line">echo fileOne uses the default stream &gt; defaultStream.txt</span><br><span class="line">echo fileTwo uses the &#x27;xxx&#x27; stream &gt; xxxStream.txt:filexxx</span><br><span class="line">type defaultStream.txt</span><br><span class="line">type xxxStream.txt</span><br><span class="line">dir</span><br><span class="line">more &lt; xxxStream.txt:filexxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://march13th.github.io/2022/03/13/Summary-of-common-commands/">https://march13th.github.io/2022/03/13/Summary-of-common-commands/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/collection-of-commands/"># collection of commands</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>We r dreamers</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
