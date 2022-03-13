@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="March 13th">
+
+
+
+
+
+<title>第三章 、安装CentOS7.x | March 13th&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第三章 、安装CentOS7.x</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">March 13th</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 14, 2022&nbsp;&nbsp;0:19:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">鸟哥的Linux私房菜-读书笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><em>鸟哥的步骤已经给的足够详细，只记录自己觉得有趣的地方</em></p>
+<ul>
+<li><p>Linux中刻录镜像到USB:</p>
+<ul>
+<li>假设USB文件名为&#x2F;dev&#x2F;sdc，而镜像文件名为centos 7.iso[dd if&#x3D;centos7.iso of&#x3D;&#x2F;dev&#x2F;sdc]</li>
+</ul>
+</li>
+<li><p>加入强制使用GPT分区表的安装参数</p>
+<ul>
+<li>如果硬盘容量小于2TB，系统会默认使用MBR模式来安装，在图中选中Install  CentOS 7后，tab键输入inst.gpt，可强制使用GPT分区表<br><img src="https://upload-images.jianshu.io/upload_images/13107967-43e21d82facca5b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></li>
+</ul>
+</li>
+<li><p>关于设备类型与文件系统</p>
+<ul>
+<li>设备类型<br>1.标准分区：分区槽，类似&#x2F;dev&#x2F;vda1<br>2.LVM：可弹性增加&#x2F;削减文件系统容量的设备设定<br>3.LVM简单配置：_<strong>不确定，但据我估计就是鸟哥说的LVM紧张供应</strong>_，LVM进阶版，与传统的LVM直接分配固定的容量不同，可让你在使用多少容量的时候才分配磁盘多少容量给你</li>
+<li>文件系统[实际格式化的时候，我们可以格式化成什么系统的意思]<br>1.ext2&#x2F;ext3&#x2F;ext4：linux早期适用文件系统，ext3&#x2F;ext4文件系统多了日志记录，对系统复原比较快速，由于磁盘容量越来越大，除非有特殊的设定需求，否则近来较少使用ext4了<br>2.swap：将磁盘仿真成内存，swap不会用到目录树的挂载，所以也不需要指定挂载点<br>3.bios boot：GPT分区表需用<br>4.xfs：目前CentOS预设的文件系统，最早由大型服务器所开发出来，对于大容量的磁盘管理非常好，格式化时也很快<br>5.vfat：同时被Linux和Windows所支持的文件系统，如果同时存在两个操作系统，可为数据的交换建立一个vfat的文件系统</li>
+</ul>
+</li>
+<li><p>安装笔记本电脑或其他类似PC计算机的参数</p>
+<ul>
+<li>笔记本电脑上面的硬件与一般计算机不怎么相同，可能导致无法顺利的安装Linux，需开机后按下tab输入以下选项[nofb apm&#x3D;off acpi&#x3D;off pci&#x3D;noacpi]</li>
+</ul>
+<p>1.nofb：取消显示器上面的缓冲存储器侦测，笔记本的显示器通常是整合的，Linux安装程序可能不能够检测到该显示器模块<br>2.apm：早期的电源管理模块<br>3.acpi：近期的电源管理模块</p>
+</li>
+<li><p>Tips</p>
+<ul>
+<li>安装过程中所选的项目包括root的密码…etc，会被记录到&#x2F;root&#x2F;anaconda-ks.cfg中，这个文件可以协助未来想重建一个一摸一样的系统时可参考该文件制作</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>#重点回顾<ul>
+<li>在预设的情况下，安装的时候系统会要求你一定要分区出的两个分区为[&#x2F;和swap]</li>
+<li>CentOS 7 的预设文件系统为xfs</li>
+<li>一般要求swap是1.5-2倍的物理内存量，但即使没有swap依旧能够安装与运行Linux系统  </li>
+<li>设定时不要选择启动kdump，那是给核心开发者查阅宕机数据的</li>
+<li>软件磁盘阵列的文件名为[RAID:&#x2F;dev&#x2F;md[0-127]]</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/03/14/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E3%80%81%E9%A6%96%E6%AC%A1%E7%99%BB%E5%85%A5%E4%B8%8E%E5%9C%A8%E7%BA%BF%E6%B1%82%E5%8A%A9/">第四章 、首次登入与在线求助</a>
+            
+            
+            <a class="next" rel="next" href="/2022/03/14/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/">第二章、主机规划与磁盘分区</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>We r dreamers</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

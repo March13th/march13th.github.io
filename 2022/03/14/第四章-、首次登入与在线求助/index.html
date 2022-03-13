@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="March 13th">
+
+
+
+
+
+<title>第四章 、首次登入与在线求助 | March 13th&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第四章 、首次登入与在线求助</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">March 13th</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 14, 2022&nbsp;&nbsp;0:19:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">鸟哥的Linux私房菜-读书笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ul>
+<li>#首次登入系统<ul>
+<li>##首次登录CentOS 7.x系统注意事项<ul>
+<li>若安装时没有设置切换输入法的快捷键，那么[设置–&gt;键盘]可设置</li>
+<li>调整背光时间，那么[设置–&gt;电源]可设置</li>
+<li>设置工作区数量及CTRL+ALT+backspace重启动x窗口，那么[应用程序–&gt;工具–&gt;优化工具]</li>
+<li>x window与文本模式切换：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      1.CTRL+ALT+F2-F6：文本模式</span><br><span class="line">      2.CTRL+ALT+F1：x window模式</span><br><span class="line">    * root用户的提示符为#，一般用户的提示符为$</span><br><span class="line">---</span><br><span class="line">- #文本模式下指令下达</span><br><span class="line">  + ##几个简单指令和热键</span><br><span class="line">    * 指令的 一般形式：command [-options] parameter1 parameter2...</span><br><span class="line">    * 显示目前所支持的语系：locale</span><br><span class="line">    * 修改语系</span><br></pre></td></tr></table></figure>
+  1.LANG&#x3D;en_US.UTF8,LANG只与输出信息有关<br>  2.export LC_ALL&#x3D;en_US.UTF8，如需要更改其他不同的信息，需同步更新LC_ALL</li>
+<li>基础指令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1. date，显示日期</span><br><span class="line">  2. cal，显示日历</span><br><span class="line">  3. bc，简单计算</span><br><span class="line"></span><br><span class="line">* 重要的几个热键</span><br></pre></td></tr></table></figure>
+<ol>
+<li>TAB：</li>
+</ol>
+<ul>
+<li>接在一串指令的第一个字后面：命令补全</li>
+<li>接在一串指令的第二个字后面：文件补齐</li>
+<li>安装bash-completion软件，在某些指令后面使用tab键可以补齐选项或参数</li>
+</ul>
+<ol start="2">
+<li>CTRL+c：终端目前程序</li>
+<li>CTRL+d：约等于exit，例如直接离开文字接口</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>#Linux系统的man和info<ul>
+<li>##帮助与关机<ul>
+<li>查询你曾经用过的指令所具备的选项和参数：–help</li>
+<li>查询命令的用法与相关说明：man<br><img src="https://upload-images.jianshu.io/upload_images/13107967-99f9c89be4c0e415.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><img src="https://upload-images.jianshu.io/upload_images/13107967-7c435cebb6c2a986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></li>
+<li>鸟哥的查询步骤<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">      1.NAME</span><br><span class="line">      2.DESCRIPTION</span><br><span class="line">      3.SEE ALSO</span><br><span class="line">      4.FILES</span><br><span class="line"></span><br><span class="line">  * 简单用法</span><br><span class="line">![](https://upload-images.jianshu.io/upload_images/13107967-0290c8367312443c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">  * 搜寻特定指令/文件的man page说明文件</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>options，-f，查询与某指令相关的说明文件[只会找指令或文件的完整名称]，eg：man -f man，相当于apropos [指令或数据]</li>
+<li>options，-k，不同于-f，可找关键词，相当于whatis [指令或数据]</li>
+<li>man的搜寻顺序：记录在&#x2F;etc&#x2F;man_db.conf这个配置文件中，先搜寻到的说明文件会被显示出来</li>
+<li>注：_**要想使用whatis和apropos，需要有建立whatis数据库，使用mandb，旧版Linux使用makewhatis<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   * info page</span><br><span class="line">     ![](https://upload-images.jianshu.io/upload_images/13107967-d14f32262998578b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">   * 说明文件在哪里~：/usr/share/doc</span><br><span class="line">   * 总结man，info，/usr/share/doc</span><br><span class="line">     1.终端模式下，知道某个指令但忘记相关选项和参数，--hep</span><br><span class="line">     2.一无所知，man或info</span><br><span class="line">     3.如果想要架设服务或利用一整组软件达成某功能，可以去/usr/share/doc地下查询有无该服务的说明档</span><br><span class="line">---</span><br><span class="line">- #正确的关机方法</span><br><span class="line">  * 观察系统的使用状态</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>1.who：目前谁在线<br>2.netstat -a：网络的联机状态<br>3.ps -aux：后台执行的程序</p>
+</li>
+</ul>
+<p>*将数据同步写入硬盘：sync，[因为你重复使用的数据被放进内存里了呀]</p>
+<ul>
+<li>关机指令：shutdown<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  语法：shutdown [-krhc] [时间] [警告讯息]</span><br><span class="line">  -k：不是真的关机，只是发出警告讯息</span><br><span class="line">  -r：在将系统服务停止后重新启动(常用)</span><br><span class="line">  -h：将系统的服务停止后立即关机(常用)</span><br><span class="line">  -c：取消已经进行的shutdown指令</span><br><span class="line">  时间：指定系统关机的时间，若无此option，默认1min后自动进行</span><br><span class="line">  eg：</span><br><span class="line">  shutdown -h now：now相当于时间为0，立即关机</span><br><span class="line">  shutdown -h 20:25：系统今天的20:25关机</span><br><span class="line">  shutdown -h +10：十分钟后关机</span><br><span class="line">  ...etc</span><br><span class="line">* 重启，关机：reboot和poweroff</span><br><span class="line">*实际使用管理工具systemctl关机</span><br><span class="line">  1.其实halt/poweroff/reboot/shutdown都是呼叫systemctl这个指令</span><br></pre></td></tr></table></figure>
+  eg：systemctl reboot</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>#重点回顾<ul>
+<li>重启x的组合按键：ALT+CTRL+backspace，记得要开启才行</li>
+<li>man page说明后面的数字中，1表示一般账号，8表示系统管理员常用命令，5表示系统配置文件</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/03/14/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">第五章、Linux的文件权限与目录配置</a>
+            
+            
+            <a class="next" rel="next" href="/2022/03/14/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E3%80%81%E5%AE%89%E8%A3%85CentOS7-x/">第三章 、安装CentOS7.x</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>We r dreamers</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

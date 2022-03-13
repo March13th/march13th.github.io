@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="March 13th">
+
+
+
+
+
+<title>第二章、主机规划与磁盘分区 | March 13th&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">第二章、主机规划与磁盘分区</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">March 13th</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 14, 2022&nbsp;&nbsp;0:19:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">鸟哥的Linux私房菜-读书笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <ul>
+<li>#磁盘分区<ul>
+<li><p>##磁盘连接的方式与装置文件名的关系</p>
+<ul>
+<li><p>正常的实体机器大概使用的都是 &#x2F;dev&#x2F;sd[a-] 的磁盘文件名，至于虚拟机环境底下，为了加速，可能就会使<br>用 &#x2F;dev&#x2F;vd[a-p] 这种装置文件名</p>
+</li>
+<li><p>SATA&#x2F;USB 接口的磁盘根本就没有一定的顺序，那如何决定他的装置文件名呢？<br> <em>根据 Linux 核心侦测到磁盘的顺序来决定文件名,这里鸟哥举了一个例题，“两个SATA硬盘和一个U盘插在主板上，SATA硬盘分别插在SATA1、SATA5上，问三个磁盘在linux中的文件名”，答“和插槽号没有关系,<strong>根据 Linux 核心侦测到磁盘的顺序来决定文件名</strong>,所以分别是&#x2F;dev&#x2F;sda、&#x2F;dev&#x2F;sdb、&#x2F;dev&#x2F;sdc(开机完成后才被捕捉到)”</em></p>
+</li>
+<li><p>磁盘盘上面又可细分出扇区(Sector)与磁道(Track)两种单位， 其中扇区的物理量设计有两种大小，分别是 512bytes 与 4Kbytes。</p>
+</li>
+</ul>
+</li>
+<li><p>##MSDOS(MBR) 与 GPT 磁盘分区表(partition table)</p>
+<ul>
+<li><p>早期为了兼容windows磁盘使用的是支持windows的MBR(master boot record)来处理开机管理程序和分区表，开机管理程序和分区表通通放在第一个扇区，扇区通常是512bytes大小，所以第一个扇区会有以下两个数据：<br>  <em><strong>主要启动记录区(Master Boot Record, MBR)：可以安装开机管理程序的地方，有 446 bytes</strong></em><br>  <em><strong>分区表(partition table)：记录整颗硬盘分区的状态，有 64 bytes</strong></em></p>
+</li>
+<li><p>分区表所在区块只有64bytes，所以最多分四组记录区（16字节一个），每组记录区记录了该区段的起始于结束的磁柱号码<img src="https://upload-images.jianshu.io/upload_images/13107967-a95013f66efbf573.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>（这张图真的是生动形象，鸟哥大赞）<br>假设上图中的硬盘文件名为&#x2F;dev&#x2F;sda1时，那么这四个分区在linux系统中的文件名为（_<strong>档名后会再接一个数字，这个数字与分区的位置是有关的，真的很有意思</strong>_）<br>P1：&#x2F;dev&#x2F;sda1<br>P2：&#x2F;dev&#x2F;sda2<br>P3：&#x2F;dev&#x2F;sda3<br>P4：&#x2F;dev&#x2F;sda4</p>
+<pre><code> * 由上得到几点重要启示
+</code></pre>
+<p> 1.其实所谓的『分区』只是针对那个 64 bytes 的分区表进行设定而已！<br> 2.硬盘默认的分区表仅能写入四组分区信息<br> 3.这四组分区信息我们称为主要(Primary)或延伸(Extended)分区槽<br> 4.分区槽的最小单位『通常』为磁柱(cylinder)<br> 5.当系统要写入磁盘时，一定会参考磁盘分区表，才能针对某个分区槽进行数据的处理</p>
+<pre><code> * 分区的意义
+    1.数据的安全性
+    2.系统的效能考虑 (我要读取xx数据，只需要读取该分区的磁柱区间即可)
+
+  * 延伸分区
+    1.延伸分区的目的是使用额外的扇区来记录分区信息，延伸分区本身并不能被拿来格式化
+    2.逻辑分区槽(延伸分区继续切出来的分区槽)的名称号码由5号开始(eg：P1:/dev/sda1，P2:/dev/sda2，**L1:/dev/sda5**)这是因为前四个号码都保留给主分区或者扩展分区了
+
+   * MBR、主要分区、延伸分区、逻辑分区特性的简单定义
+    1.主要分区与延伸分区最多可以有4笔(硬盘限制)
+    2.延伸分区最多只能有一个(操作系统的限制)
+    3.逻辑分区是由延伸分区持续切割出的分区槽
+    4.能够被格式化后，作为数据存取的分区槽为主要分区与逻辑分区，延伸分区无法被格式化
+    5.逻辑分区的数量因操作系统而不同
+
+  * MBR的局限
+    1.操作系统无法抓取到2.2T以上的内容
+    2.MBR仅有一个区块，如损坏后无法或很难救援
+    3.MBR内存放开机管理程序的区块仅446bytes，无法容纳较多的程序代码
+    **补充说明**，为什么无法抓取到2.2T以上的磁盘容量呢，首先16个字节的分区信息中都有什么呢，16个字节的分区信息保存有分区活动状态标志、文件系统标识、起止柱面号、磁头号、扇区号、起始扇区位置（4个字节）、分区总扇区数目（4个字节）等内容。这里最重要的是：分区的起始扇区位置与分区的总扇区数，都是用4个字节表示的，而这一分区最大能表示2的32次方的扇区个数，按每扇区512字节计算，每个分区最大不能超过2TB。磁盘容量超过2TB以后，分区的起始位置也就无法表示
+</code></pre>
+<ul>
+<li><p>##GUID partition table，GPT磁盘分区表</p>
+<ul>
+<li><p>为了兼容所有的磁盘，在扇区的定义上，大多使用LBA(Logical Block Address 逻辑区块地址)来处理，GPT将磁盘所有区块以此LBA(预设为512bytes)来规划，由LBA0开始编号</p>
+</li>
+<li><p>MBR仅使用第一个512bytes去开来记录，GPT使用了34个LBA区块来记录分区信息<br><img src="https://upload-images.jianshu.io/upload_images/13107967-c83a0cc783c02d68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+</li>
+<li><p>LBA0(MBR相容区块)<br>分为两部分<br>1.446bytes储存第一阶段的开机管理程序<br>2.原本分区表的记录区内，这个兼容模式仅放入一个特殊标志的分区(表示老子这个磁盘是GPT格式，不认识GPT分区表的磁盘管理程序请走开)</p>
+</li>
+<li><p>LBA1(GPT 表头记录)<br>1.记录了分区表本身的位置与大小<br>2.记录了备份用GPT分区的位置<br>3.放置了分区表的检验机制码,操作系统以此来判断GPT正确性，若错误，则透过此记录区取得备份的GPT回复GPT 的正常运作</p>
+</li>
+<li><p>LBA2-33(实际记录分区信息处)<br>从LBA2开始，每个LBA可记录4比分区记录，默认情况下可有4*32比分区记录，每笔记录中分别提供64bits来记录开始&#x2F;结束扇区号码</p>
+</li>
+<li><p>注意<br>1.磁盘管理工具fdisk不认识GPT,需使用gdisk或parted指令<br>2.grub第一版不认识GPT，grub2后认识</p>
+</li>
+</ul>
+</li>
+<li><p>##开机流程中的BIOS与UFFI开机检测程序</p>
+<ul>
+<li><p>大致开机流程<br>1.BIOS：开机主动执行的程序(根据设定取得能够开机的硬盘，并到该硬盘读取第一个扇区的MBR位置)<br>2.MBR：主要启动记录区块，内含开机管理程序<br>3.开机管理程序(boot loader)：一个可读取核心文件来执行软件<br>4.核心文件，开始操作系统的功能…</p>
+</li>
+<li><p>LBA0仅提供第一阶段开机管理程序代码，如果使用类似grub的的开机管理程序，需额外分出一个BIOS boot的分区槽防止其他开机过程中的其他代码，CentOS中通常占用2MB</p>
+</li>
+<li><p>boot loader的主要任务<br>1.提供选项：用户可选择不同的开机项目，这也是多重引导的重要功能<br>2.载入核心文件：直接指向可开机的程序区段开始操作系统<br>3.转交其他loader：将开机管理功能转交给其他loader(开机管理程序除了可以安装在MBR，还可以安装再每个分区槽的启动扇区(boot sector))–造就了多重引导功能</p>
+</li>
+<li><p>多重引导工作的总结<br>1.每个分区槽都拥有自己的启动扇区(boot sector)<br>2.实际可开机的核心文件是放置到各分区槽的<br>3.loader只认识自己系统槽内的可开机核心文件以及其他loader<br>4.loader可直接指向或者是间接将管理权移交给另一个管理程序<br>5.多重引导为什么先安装windows再安装linux呢，因为windows安装程序会主动覆盖MBR及自己所在分区槽的启动扇区，并没有提供给我们选择的功能   </p>
+</li>
+<li><p>UFFI BIOS搭配GPT开机流程(用到再说)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/13107967-4b6848f961031026.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<ul>
+<li>##linux安装模式下，磁盘分区的选择<ul>
+<li>文件系统与目录树的关系<br>1.挂载：利用一个目录当作进入点，将磁盘分区槽内的数据放置再该目录下，这个动作即为挂载，这个进入点即为挂载点</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>#安装Linux前的规划<br>   (没什么笔记，按需定制)</li>
+</ul>
+<hr>
+<ul>
+<li>#重点回顾<ul>
+<li>磁盘文件通常分为两种，实际SATA&#x2F;USB文件名为&#x2F;dev&#x2F;sd[a-p]，虚拟机中的文件名可能为&#x2F;dev&#x2F;vd[a-p]</li>
+<li>磁盘的第一个扇区主要记录两个重要信息<br>1.主要启动记录区(MBR)，446字节，可安装开机管理程序的地方<br>2.分区表(partition table)，64字节，记录整颗硬盘分区的状态</li>
+<li>磁盘的MBR分区方式中，主分区和扩展分区最多可以有4个，逻辑分区的文件名号码一定由5开始</li>
+<li>磁盘容量大于2TB时，系统会自动使用GPT分区方式来处理磁盘分区</li>
+<li>GPT分区无扩展分区与逻辑分区的概念，可假设所有分区都是主分区</li>
+<li>开机的流程:BIOS–&gt;MBR–&gt;boot loader–&gt;核心文件</li>
+<li>boot loader可以安装的地点有两个，MBR和boot sector</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/03/14/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E3%80%81%E5%AE%89%E8%A3%85CentOS7-x/">第三章 、安装CentOS7.x</a>
+            
+            
+            <a class="next" rel="next" href="/2022/03/13/Summary-of-common-commands/">Summary of common commands</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>We r dreamers</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
