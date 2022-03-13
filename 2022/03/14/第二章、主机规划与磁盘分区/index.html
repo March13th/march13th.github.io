@@ -168,7 +168,7 @@
 <ul>
 <li><p>早期为了兼容windows磁盘使用的是支持windows的MBR(master boot record)来处理开机管理程序和分区表，开机管理程序和分区表通通放在第一个扇区，扇区通常是512bytes大小，所以第一个扇区会有以下两个数据：<br>  <em><strong>主要启动记录区(Master Boot Record, MBR)：可以安装开机管理程序的地方，有 446 bytes</strong></em><br>  <em><strong>分区表(partition table)：记录整颗硬盘分区的状态，有 64 bytes</strong></em></p>
 </li>
-<li><p>分区表所在区块只有64bytes，所以最多分四组记录区（16字节一个），每组记录区记录了该区段的起始于结束的磁柱号码<img src="/../../public/image/pic/1240-16471899460321.png"><br>（这张图真的是生动形象，鸟哥大赞）<br>假设上图中的硬盘文件名为&#x2F;dev&#x2F;sda1时，那么这四个分区在linux系统中的文件名为（_<strong>档名后会再接一个数字，这个数字与分区的位置是有关的，真的很有意思</strong>_）<br>P1：&#x2F;dev&#x2F;sda1<br>P2：&#x2F;dev&#x2F;sda2<br>P3：&#x2F;dev&#x2F;sda3<br>P4：&#x2F;dev&#x2F;sda4</p>
+<li><p>分区表所在区块只有64bytes，所以最多分四组记录区（16字节一个），每组记录区记录了该区段的起始于结束的磁柱号码<img src="/../../themes/hexo-theme-Chic/source/image/pic/1240-16471899460321.png"><br>（这张图真的是生动形象，鸟哥大赞）<br>假设上图中的硬盘文件名为&#x2F;dev&#x2F;sda1时，那么这四个分区在linux系统中的文件名为（_<strong>档名后会再接一个数字，这个数字与分区的位置是有关的，真的很有意思</strong>_）<br>P1：&#x2F;dev&#x2F;sda1<br>P2：&#x2F;dev&#x2F;sda2<br>P3：&#x2F;dev&#x2F;sda3<br>P4：&#x2F;dev&#x2F;sda4</p>
 </li>
 <li><p>由上得到几点重要启示<br> 1.其实所谓的『分区』只是针对那个 64 bytes 的分区表进行设定而已！<br> 2.硬盘默认的分区表仅能写入四组分区信息<br> 3.这四组分区信息我们称为主要(Primary)或延伸(Extended)分区槽<br> 4.分区槽的最小单位『通常』为磁柱(cylinder)<br> 5.当系统要写入磁盘时，一定会参考磁盘分区表，才能针对某个分区槽进行数据的处理</p>
 </li>
@@ -215,7 +215,7 @@
 </li>
 <li><p>多重引导工作的总结<br>1.每个分区槽都拥有自己的启动扇区(boot sector)<br>2.实际可开机的核心文件是放置到各分区槽的<br>3.loader只认识自己系统槽内的可开机核心文件以及其他loader<br>4.loader可直接指向或者是间接将管理权移交给另一个管理程序<br>5.多重引导为什么先安装windows再安装linux呢，因为windows安装程序会主动覆盖MBR及自己所在分区槽的启动扇区，并没有提供给我们选择的功能   </p>
 </li>
-<li><p>UFFI BIOS搭配GPT开机流程(用到再说)<br>  <img src="/../../public/image/pic/1240-16471899598315.png"></p>
+<li><p>UFFI BIOS搭配GPT开机流程(用到再说)<br>  <img src="/../../themes/hexo-theme-Chic/source/image/pic/1240-16471899598315.png"></p>
 </li>
 </ul>
 </li>
