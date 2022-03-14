@@ -153,12 +153,12 @@
 
         <div class="post-content">
             <ul>
-<li>#首次登入系统<ul>
-<li>##首次登录CentOS 7.x系统注意事项<ul>
+<li>首次登入系统<ul>
+<li>首次登录CentOS 7.x系统注意事项<ul>
 <li>若安装时没有设置切换输入法的快捷键，那么[设置–&gt;键盘]可设置</li>
 <li>调整背光时间，那么[设置–&gt;电源]可设置</li>
 <li>设置工作区数量及CTRL+ALT+backspace重启动x窗口，那么[应用程序–&gt;工具–&gt;优化工具]</li>
-<li>x window与文本模式切换：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      1.CTRL+ALT+F2-F6：文本模式</span><br><span class="line">      2.CTRL+ALT+F1：x window模式</span><br><span class="line">    * root用户的提示符为#，一般用户的提示符为$</span><br><span class="line">---</span><br><span class="line">- #文本模式下指令下达</span><br><span class="line">  + ##几个简单指令和热键</span><br><span class="line">    * 指令的 一般形式：command [-options] parameter1 parameter2...</span><br><span class="line">    * 显示目前所支持的语系：locale</span><br><span class="line">    * 修改语系</span><br></pre></td></tr></table></figure>
+<li>x window与文本模式切换：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      1.CTRL+ALT+F2-F6：文本模式</span><br><span class="line">      2.CTRL+ALT+F1：x window模式</span><br><span class="line">    * root用户的提示符为，一般用户的提示符为$</span><br><span class="line">---</span><br><span class="line">- 文本模式下指令下达</span><br><span class="line">  + 几个简单指令和热键</span><br><span class="line">    * 指令的 一般形式：command [-options] parameter1 parameter2...</span><br><span class="line">    * 显示目前所支持的语系：locale</span><br><span class="line">    * 修改语系</span><br></pre></td></tr></table></figure>
   1.LANG&#x3D;en_US.UTF8,LANG只与输出信息有关<br>  2.export LC_ALL&#x3D;en_US.UTF8，如需要更改其他不同的信息，需同步更新LC_ALL</li>
 <li>基础指令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1. date，显示日期</span><br><span class="line">  2. cal，显示日历</span><br><span class="line">  3. bc，简单计算</span><br><span class="line"></span><br><span class="line">* 重要的几个热键</span><br></pre></td></tr></table></figure>
 <ol>
@@ -181,8 +181,8 @@
 </ul>
 <hr>
 <ul>
-<li>#Linux系统的man和info<ul>
-<li>##帮助与关机<ul>
+<li>Linux系统的man和info<ul>
+<li>帮助与关机<ul>
 <li>查询你曾经用过的指令所具备的选项和参数：–help</li>
 <li>查询命令的用法与相关说明：man<br><img src="/2022/03/14/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E3%80%81%E9%A6%96%E6%AC%A1%E7%99%BB%E5%85%A5%E4%B8%8E%E5%9C%A8%E7%BA%BF%E6%B1%82%E5%8A%A9/1240-164725712027070.png"><br><img src="/2022/03/14/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E3%80%81%E9%A6%96%E6%AC%A1%E7%99%BB%E5%85%A5%E4%B8%8E%E5%9C%A8%E7%BA%BF%E6%B1%82%E5%8A%A9/1240-164725712226872.png"></li>
 <li>鸟哥的查询步骤<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    1.NAME</span><br><span class="line">    2.DESCRIPTION</span><br><span class="line">    3.SEE ALSO</span><br><span class="line">    4.FILES</span><br><span class="line"></span><br><span class="line">* 简单用法</span><br><span class="line">![](1240-164725712410774.png)</span><br><span class="line">* 搜寻特定指令/文件的man page说明文件</span><br></pre></td></tr></table></figure></li>
@@ -191,7 +191,7 @@
 <li>options，-f，查询与某指令相关的说明文件[只会找指令或文件的完整名称]，eg：man -f man，相当于apropos [指令或数据]</li>
 <li>options，-k，不同于-f，可找关键词，相当于whatis [指令或数据]</li>
 <li>man的搜寻顺序：记录在&#x2F;etc&#x2F;man_db.conf这个配置文件中，先搜寻到的说明文件会被显示出来</li>
-<li>注：_**要想使用whatis和apropos，需要有建立whatis数据库，使用mandb，旧版Linux使用makewhatis<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   * info page</span><br><span class="line">     ![](1240-164725712617576.png)</span><br><span class="line">   * 说明文件在哪里~：/usr/share/doc</span><br><span class="line">   * 总结man，info，/usr/share/doc</span><br><span class="line">     1.终端模式下，知道某个指令但忘记相关选项和参数，--hep</span><br><span class="line">     2.一无所知，man或info</span><br><span class="line">     3.如果想要架设服务或利用一整组软件达成某功能，可以去/usr/share/doc地下查询有无该服务的说明档</span><br><span class="line">---</span><br><span class="line">- #正确的关机方法</span><br><span class="line">  * 观察系统的使用状态</span><br></pre></td></tr></table></figure></li>
+<li>注：_**要想使用whatis和apropos，需要有建立whatis数据库，使用mandb，旧版Linux使用makewhatis<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   * info page</span><br><span class="line">     ![](1240-164725712617576.png)</span><br><span class="line">   * 说明文件在哪里~：/usr/share/doc</span><br><span class="line">   * 总结man，info，/usr/share/doc</span><br><span class="line">     1.终端模式下，知道某个指令但忘记相关选项和参数，--hep</span><br><span class="line">     2.一无所知，man或info</span><br><span class="line">     3.如果想要架设服务或利用一整组软件达成某功能，可以去/usr/share/doc地下查询有无该服务的说明档</span><br><span class="line">---</span><br><span class="line">- 正确的关机方法</span><br><span class="line">  * 观察系统的使用状态</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>1.who：目前谁在线<br>2.netstat -a：网络的联机状态<br>3.ps -aux：后台执行的程序<br>*将数据同步写入硬盘：sync，[因为你重复使用的数据被放进内存里了呀]</p>
 </li>
@@ -204,7 +204,7 @@
 </ul>
 <hr>
 <ul>
-<li>#重点回顾<ul>
+<li>重点回顾<ul>
 <li>重启x的组合按键：ALT+CTRL+backspace，记得要开启才行</li>
 <li>man page说明后面的数字中，1表示一般账号，8表示系统管理员常用命令，5表示系统配置文件</li>
 </ul>

@@ -215,14 +215,14 @@
 
         <div class="post-content">
             <ul>
-<li>#使用者与群组<ul>
-<li>##文件拥有者的概念<ul>
+<li>使用者与群组<ul>
+<li>文件拥有者的概念<ul>
 <li>owner</li>
 <li>group</li>
 <li>others</li>
 </ul>
 </li>
-<li>##Linux用户身份与群组记录的文件<ul>
+<li>Linux用户身份与群组记录的文件<ul>
 <li>&#x2F;etc&#x2F;passwd：账号的相关信息</li>
 <li>&#x2F;etc&#x2F;shadow：密码的相关信息</li>
 <li>&#x2F;etc&#x2F;group：群组的相关信息</li>
@@ -233,12 +233,12 @@
 </ul>
 <hr>
 <ul>
-<li>#Linux文件权限概念<ul>
-<li>##Linux文件属性<ul>
+<li>Linux文件权限概念<ul>
+<li>Linux文件属性<ul>
 <li><img src="/2022/03/14/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/1240.png"></li>
 <li>上图分解如下：<br><img src="/2022/03/14/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/1240-164725724866579.png"></li>
 <li>【1 】代表文件的类型和权限<ul>
-<li>第一个字符代表这个文件是目录、文件or链接文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">      1. d：目录</span><br><span class="line">      2. -：文件</span><br><span class="line">      3. l：连接档(link file)</span><br><span class="line">      4. b：可供储存的接口设备</span><br><span class="line">      5. c：表示串行端口设备，鼠标、键盘等</span><br><span class="line">    - 接下来的字符三个一组，r代表可读(read)，w代表可写(write)，x代表可执行(execute)</span><br><span class="line">      1. 第一组：文件拥有者可具备的权限</span><br><span class="line">      2. 第二组：加入此群组的账号的权限</span><br><span class="line">      3. 第三组：其他账号的权限</span><br><span class="line">  * 【2】代表有多少档名连结到此节点(i-node）</span><br><span class="line">    - 每个文件都会将他的权限记录到文件系统的i-node中，我们的目录树是使用文件名来记录的，因此每个文件名都会连结到一个i-node，这个数字代表有多少不同的文件名连结到一个i-node号码</span><br><span class="line">  * 【3】代表这个文件or目录的拥有者账号</span><br><span class="line">  * 【4】代表这个文件的所属群组</span><br><span class="line">  * 【5】代表这个文件的容量大小，默认单位bytes</span><br><span class="line">  * 【6】代表这个文件的创建日期or最近的修改日期[使用ls -l --full-time可以显示处完整的时间格式]</span><br><span class="line">  * 【7】这个文件的文件名</span><br><span class="line">- ##改变文件属性与权限</span><br><span class="line">  * chgrp：改变所属群组[要被改变的组名在/etc/group已经存在]</span><br></pre></td></tr></table></figure></li>
+<li>第一个字符代表这个文件是目录、文件or链接文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">      1. d：目录</span><br><span class="line">      2. -：文件</span><br><span class="line">      3. l：连接档(link file)</span><br><span class="line">      4. b：可供储存的接口设备</span><br><span class="line">      5. c：表示串行端口设备，鼠标、键盘等</span><br><span class="line">    - 接下来的字符三个一组，r代表可读(read)，w代表可写(write)，x代表可执行(execute)</span><br><span class="line">      1. 第一组：文件拥有者可具备的权限</span><br><span class="line">      2. 第二组：加入此群组的账号的权限</span><br><span class="line">      3. 第三组：其他账号的权限</span><br><span class="line">  * 【2】代表有多少档名连结到此节点(i-node）</span><br><span class="line">    - 每个文件都会将他的权限记录到文件系统的i-node中，我们的目录树是使用文件名来记录的，因此每个文件名都会连结到一个i-node，这个数字代表有多少不同的文件名连结到一个i-node号码</span><br><span class="line">  * 【3】代表这个文件or目录的拥有者账号</span><br><span class="line">  * 【4】代表这个文件的所属群组</span><br><span class="line">  * 【5】代表这个文件的容量大小，默认单位bytes</span><br><span class="line">  * 【6】代表这个文件的创建日期or最近的修改日期[使用ls -l --full-time可以显示处完整的时间格式]</span><br><span class="line">  * 【7】这个文件的文件名</span><br><span class="line">- 改变文件属性与权限</span><br><span class="line">  * chgrp：改变所属群组[要被改变的组名在/etc/group已经存在]</span><br></pre></td></tr></table></figure></li>
 </ul>
 <ol>
 <li>语法 chgrp group_name [-R] dirname&#x2F;filename</li>
@@ -260,7 +260,7 @@
 </li>
 </ul>
 </li>
-<li>##目录与文件的权限意义<ul>
+<li>目录与文件的权限意义<ul>
 <li>权限对文件的重要性<ul>
 <li>r：可读取文件实际内容</li>
 <li>w：可编辑、新增or修改文件内容(不包括删除)</li>
@@ -286,7 +286,7 @@
 </li>
 </ul>
 </li>
-<li>##Linux文件种类与扩展名<ul>
+<li>Linux文件种类与扩展名<ul>
 <li>文件种类(regular file)：<ul>
 <li>正规文件<ul>
 <li>纯文本文档(ASCII)</li>
@@ -323,8 +323,8 @@
 </ul>
 <hr>
 <ul>
-<li>#Linux目录配置<ul>
-<li>##Linux目录配置<br>*Linux目录配置的依据-FHS<ul>
+<li>Linux目录配置<ul>
+<li>Linux目录配置<br>*Linux目录配置的依据-FHS<ul>
 <li>FHS(filesystem hierarchy standard)，主要目的是希望使用者知道已安装的软件通常放置在哪个目录下</li>
 <li>FHS将目录定义为四种交互作用的形态，如下图：<br><img src="/2022/03/14/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/1240-164725725489383.png"><ul>
 <li>可分享的：可分享给其他系统挂在使用的目录</li>
@@ -393,7 +393,7 @@
 </ul>
 <hr>
 <ul>
-<li>#重点回顾<ul>
+<li>重点回顾<ul>
 <li>Linux 的每个文件中，可分别给予使用者、群组与其他人三种身份个别的 rwx 权限；</li>
 <li>每个账号都可以有多个群组的支持；</li>
 <li>利用 ls -l 显示的文件属性中，第一个字段是文件的权限，共有十个位，第一个位是文件类型， 接下来三个为一组共三组，为使用者、群组、其他人的权限，权限有 r,w,x 三种；</li>
