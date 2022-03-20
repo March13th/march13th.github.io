@@ -214,19 +214,25 @@
         </header>
 
         <div class="post-content">
-            <h4 id="1-1-–-The-OSI-Model"><a href="#1-1-–-The-OSI-Model" class="headerlink" title="1.1 – The OSI Model"></a>1.1 – The OSI Model</h4><h6 id="Understanding-the-OSI-Model"><a href="#Understanding-the-OSI-Model" class="headerlink" title="Understanding the OSI Model"></a>Understanding the OSI Model</h6><ul>
+            <h3 id="1-1-–-The-OSI-Model"><a href="#1-1-–-The-OSI-Model" class="headerlink" title="1.1 – The OSI Model"></a>1.1 – The OSI Model</h3><h4 id="Understanding-the-OSI-Model"><a href="#Understanding-the-OSI-Model" class="headerlink" title="Understanding the OSI Model"></a>Understanding the OSI Model</h4><ul>
 <li><p>记住OSI模型的一种方法：All People Seem To Need Data Processing</p>
 <p>[application, presentation, session, transport, network, data link, and physical.]</p>
-<p>Layer1:</p>
-<p>The physics of the network</p>
-<p>[eg:cables…]</p>
-<p>Layer2:</p>
-<p>The data link layer</p>
+<p>Layer1:<strong>The physics of the network</strong>[eg:cables…]</p>
+<p>Layer2:<strong>The data link layer</strong></p>
 <ul>
-<li>The foundational layer for the protocols</li>
-<li>Data Link Control(DLC) protocols<br>[MAC address an Ethernet]</li>
-<li>The “switching” layer[ Since switches make their forwarding decisions based on these MAC addresses, we sometimes will refer to Layer 2 as the “switching” layer.]<br>Layer3:<strong>The network layer</strong>[Internet Protocol (IP)、Router]<br>Layer4:<strong>The Transport layer</strong>[TCP and UDP]<br>Layer5:<strong>The Session layer</strong></li>
-<li>Communication management between devices<br>Layer6:<strong>The Presentation layer</strong></li>
+<li><p>The foundational layer for the protocols</p>
+</li>
+<li><p>Data Link Control(DLC) protocols<br>[MAC address an Ethernet]</p>
+</li>
+<li><p>The “switching” layer[ Since switches make their forwarding decisions based on these MAC addresses, we sometimes will refer to Layer 2 as the “switching” layer.]</p>
+</li>
+</ul>
+<p>Layer3:<strong>The network layer</strong>[Internet Protocol (IP)、Router]<br>Layer4:<strong>The Transport layer</strong>[TCP and UDP]<br>Layer5:<strong>The Session layer</strong></p>
+<ul>
+<li>Communication management between devices</li>
+</ul>
+<p>Layer6:<strong>The Presentation layer</strong></p>
+<ul>
 <li>character encoding</li>
 <li>application encryption</li>
 <li>often combined with application layer<br>Layer7:<strong>The Applicationlayer</strong>[HTTP&#x2F;DNS&#x2F;FTP&#x2F;POP3]</li>
@@ -236,8 +242,8 @@
 <li><p>之前都没有注意过wireshark中实际也是分层显示的</p>
 </li>
 </ul>
-<h6 id="Understanding-the-OSI-Model-1"><a href="#Understanding-the-OSI-Model-1" class="headerlink" title="Understanding the OSI Model"></a>Understanding the OSI Model</h6><p><img src="/%60Section-1-Networking-Concepts%60/1240.png" alt="data communication 1"></p>
-<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310491.png" alt="data communication 2"></p>
+<h4 id="Data-Communication"><a href="#Data-Communication" class="headerlink" title="Data Communication"></a>Data Communication</h4><p><img src="/Section-1-Networking-Concepts/1240.png" alt="data communication 1"></p>
+<p><img src="/Section-1-Networking-Concepts/1240-16477712310491.png" alt="data communication 2"></p>
 <ul>
 <li><p>The header describes or identifies the payload</p>
 </li>
@@ -253,7 +259,7 @@
 <li><p>RST:reset the connection</p>
 </li>
 <li><p>FIN:last packer from the sender</p>
-<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310492.png" alt="flags"></p>
+<p><img src="/Section-1-Networking-Concepts/1240-16477712310492.png" alt="flags"></p>
 </li>
 </ul>
 </li>
@@ -268,7 +274,7 @@
 
 <p>[为什么是1472，the ping command is specifying that 1,500 bytes minus the ICMP header of 8 bytes, and minus the 20-byte header of the IP address itself, leaving us with 1,472]</p>
 <p>我这里因为环境中有vpn，报文在传输过程中有额外的封装</p>
-<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310493.png" alt="troubleshoot using ping"></p>
+<p><img src="/Section-1-Networking-Concepts/1240-16477712310493.png" alt="troubleshoot using ping"></p>
 </li>
 </ul>
 </li>
