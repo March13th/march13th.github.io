@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="March 13th">
+
+
+
+
+
+<title>Section 1 Networking Concepts | March 13th&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Section 1 Networking Concepts</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">March 13th</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 20, 2022&nbsp;&nbsp;18:12:30</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Professor-Messer%E2%80%99s-CompTIA-N10-008-Network-Course/">Professor Messer’s CompTIA N10-008 Network+ Course</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="1-1-–-The-OSI-Model"><a href="#1-1-–-The-OSI-Model" class="headerlink" title="1.1 – The OSI Model"></a>1.1 – The OSI Model</h4><h6 id="Understanding-the-OSI-Model"><a href="#Understanding-the-OSI-Model" class="headerlink" title="Understanding the OSI Model"></a>Understanding the OSI Model</h6><ul>
+<li><p>记住OSI模型的一种方法：All People Seem To Need Data Processing</p>
+<p>[application, presentation, session, transport, network, data link, and physical.]</p>
+<p>Layer1:</p>
+<p>The physics of the network</p>
+<p>[eg:cables…]</p>
+<p>Layer2:</p>
+<p>The data link layer</p>
+<ul>
+<li>The foundational layer for the protocols</li>
+<li>Data Link Control(DLC) protocols<br>[MAC address an Ethernet]</li>
+<li>The “switching” layer[ Since switches make their forwarding decisions based on these MAC addresses, we sometimes will refer to Layer 2 as the “switching” layer.]<br>Layer3:<strong>The network layer</strong>[Internet Protocol (IP)、Router]<br>Layer4:<strong>The Transport layer</strong>[TCP and UDP]<br>Layer5:<strong>The Session layer</strong></li>
+<li>Communication management between devices<br>Layer6:<strong>The Presentation layer</strong></li>
+<li>character encoding</li>
+<li>application encryption</li>
+<li>often combined with application layer<br>Layer7:<strong>The Applicationlayer</strong>[HTTP&#x2F;DNS&#x2F;FTP&#x2F;POP3]</li>
+<li>the layer we see</li>
+</ul>
+</li>
+<li><p>之前都没有注意过wireshark中实际也是分层显示的</p>
+</li>
+</ul>
+<h6 id="Understanding-the-OSI-Model-1"><a href="#Understanding-the-OSI-Model-1" class="headerlink" title="Understanding the OSI Model"></a>Understanding the OSI Model</h6><p><img src="/%60Section-1-Networking-Concepts%60/1240.png" alt="data communication 1"></p>
+<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310491.png" alt="data communication 2"></p>
+<ul>
+<li><p>The header describes or identifies the payload</p>
+</li>
+<li><p>The TCP header contains important control information</p>
+<ul>
+<li>Includes a set of bits called TCP flags</li>
+</ul>
+</li>
+<li><p>The flags control the payload</p>
+<ul>
+<li><p>SYN:synchronize sequence numbers</p>
+</li>
+<li><p>RST:reset the connection</p>
+</li>
+<li><p>FIN:last packer from the sender</p>
+<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310492.png" alt="flags"></p>
+</li>
+</ul>
+</li>
+<li><p>Maximum Transmission Unit(MTU)</p>
+<ul>
+<li><p>这指定了我们能够通过网络发送的数据大小，而无需进一步分割任何信息</p>
+</li>
+<li><p>如果我想发一个44字节的数据，但是MTU&#x3D;16，那么我不得不分为3帧来发</p>
+</li>
+<li><p>可以使用ping进行试验</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping -f -l 1472 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<p>[为什么是1472，the ping command is specifying that 1,500 bytes minus the ICMP header of 8 bytes, and minus the 20-byte header of the IP address itself, leaving us with 1,472]</p>
+<p>我这里因为环境中有vpn，报文在传输过程中有额外的封装</p>
+<p><img src="/%60Section-1-Networking-Concepts%60/1240-16477712310493.png" alt="troubleshoot using ping"></p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Networking/"># Networking</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/03/14/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%89%93%E5%8C%85/">第八章、文件与文件系统的压缩与打包</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>We r dreamers</span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
