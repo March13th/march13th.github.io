@@ -123,6 +123,68 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -152,7 +214,28 @@
         </header>
 
         <div class="post-content">
-            
+            <p><img src="/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/v2-cf4e7d7b386df75a8cde40d2e0e1e6b2_r-16478665349409.jpg" alt="TCP/IP详解卷1"></p>
+<p>​    最近恰巧有朋友问过我三次握手四次挥手，顺便记录一下，可惜我也是一知半解。</p>
+<p>​    首先，TCP连接就是为了在不可靠的信道上建立可靠的连接</p>
+<h6 id="为什么不采用两次握手建立连接呢"><a href="#为什么不采用两次握手建立连接呢" class="headerlink" title="为什么不采用两次握手建立连接呢"></a>为什么不采用两次握手建立连接呢</h6><p>​    因为说了TCP是为了建立<strong>可靠</strong>的连接，这意味着<strong>完整、有序</strong>，TCP是个双向通信协议，通信双方都要判断发送的数据包是否被接收方收到，所以才有<strong>序号</strong>和<strong>确认号</strong></p>
+<p>​    所以…让我举个栗子</p>
+<p>​    1. A对B说，我要连你！我发的信息从序号123（SYN seq&#x3D;123）开始</p>
+<p>​    2. B对A说，<strong>收到你信息拉</strong>，可以给我发这个序号的信息（ACK ack&#x3D;124），对了！我发的信息从序号456（SYN seq&#x3D;456）开始</p>
+<pre><code> 3. A对B说，**知道拉**，那你可以给我发序号457（ACK ack=457）的信息
+</code></pre>
+<p>​    上面是想说什么呢，TCP是个双向通信协议，如果想要相互确认初始序列号 ( Initial Sequence Number, ISN )，需要三次，如果只有两次的话，对于B来说，他是得不到确认的，不懂就试试。</p>
+<h6 id="试试就知道"><a href="#试试就知道" class="headerlink" title="试试就知道"></a>试试就知道</h6><p>​    Wireshark捕获Loopback，nc一头监听一头连接</p>
+<p>​    <code>nc -lp 1234</code></p>
+<p>​    <code>nc 127.0.0.1 1234</code></p>
+<p>​    <img src="/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321224509825.png" alt="image-20220321224509825"></p>
+<p><img src="/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321224934194.png" alt="image-20220321224934194"></p>
+<p><img src="/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321225206805.png" alt="image-20220321225206805"></p>
+<p><strong>上面的最后一包ACK之后，客户端的下一包报文Seq是多少？？？</strong></p>
+<p>因为SYN报文段不能携带数据，但是要消耗一个序列号；ACK报文段可以携带数据，但是如果不携带数据就不消耗序列号，下一个报文段的序号仍然是Seq&#x3D;ISN(c)+1</p>
+<p><strong>那么为啥SYN包要消耗一个序列号呢</strong></p>
+<p>因为要ack这个syn（fin），而不ack对方的ack</p>
+<h3 id="至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）"><a href="#至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）" class="headerlink" title="至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）"></a>至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）</h3><p><img src="/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321233351983.png" alt="image-20220321233351983"></p>
+
         </div>
 
         
