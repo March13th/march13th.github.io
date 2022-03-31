@@ -13,7 +13,7 @@
 
 
 
-<title>TCP连接与断开小记 | March 13th&#39;s Blog</title>
+<title>关于SSH指纹的一点记录 | March 13th&#39;s Blog</title>
 
 
 
@@ -189,7 +189,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">TCP连接与断开小记</h1>
+            <h1 class="post-title">关于SSH指纹的一点记录</h1>
             
                 <div class="post-meta">
                     
@@ -198,7 +198,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 21, 2022&nbsp;&nbsp;20:19:05</a>
+                        Date: <a href="#">March 31, 2022&nbsp;&nbsp;22:15:29</a>
                         </span>
                     
                     
@@ -214,27 +214,20 @@
         </header>
 
         <div class="post-content">
-            <p><img src="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/v2-cf4e7d7b386df75a8cde40d2e0e1e6b2_r-16478665349409.jpg" alt="TCP/IP详解卷1"></p>
-<p>​    最近恰巧有朋友问过我三次握手四次挥手，顺便记录一下，可惜我也是一知半解。</p>
-<p>​    首先，TCP连接就是为了在不可靠的信道上建立可靠的连接</p>
-<h3 id="为什么不采用两次握手建立连接呢"><a href="#为什么不采用两次握手建立连接呢" class="headerlink" title="为什么不采用两次握手建立连接呢"></a>为什么不采用两次握手建立连接呢</h3><p>​    因为说了TCP是为了建立<strong>可靠</strong>的连接，这意味着<strong>完整、有序</strong>，TCP是个双向通信协议，通信双方都要判断发送的数据包是否被接收方收到，所以才有<strong>序号</strong>和<strong>确认号</strong></p>
-<p>​    所以…让我举个栗子</p>
-<pre><code>1. A对B说，我要连你！我发的信息从序号123（SYN seq=123）开始
-1. B对A说，**收到你信息拉**，可以给我发这个序号的信息（ACK ack=124），对了！我发的信息从序号456（SYN seq=456）开始
-1. A对B说，**知道拉**，那你可以给我发序号457（ACK ack=457）的信息
-</code></pre>
-<p>​    上面是想说什么呢，TCP是个双向通信协议，如果想要相互确认初始序列号 ( Initial Sequence Number, ISN )，需要三次，如果只有两次的话，对于B来说，他是得不到确认的，不懂就试试。</p>
-<h3 id="试试就知道"><a href="#试试就知道" class="headerlink" title="试试就知道"></a>试试就知道</h3><p>​    Wireshark捕获Loopback，nc一头监听一头连接</p>
-<p>​    <code>nc -lp 1234</code></p>
-<p>​    <code>nc 127.0.0.1 1234</code></p>
-<p>​    <img src="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321224509825.png" alt="image-20220321224509825"></p>
-<p><img src="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321224934194.png" alt="image-20220321224934194"></p>
-<p><img src="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321225206805.png" alt="image-20220321225206805"></p>
-<p><strong>上面的最后一包ACK之后，客户端的下一包报文Seq是多少？？？</strong></p>
-<p>因为SYN报文段不能携带数据，但是要消耗一个序列号；ACK报文段可以携带数据，但是如果不携带数据就不消耗序列号，下一个报文段的序号仍然是Seq&#x3D;ISN(c)+1</p>
-<p><strong>那么为啥SYN包要消耗一个序列号呢</strong></p>
-<p>因为要ack这个syn（fin），而不ack对方的ack</p>
-<h3 id="至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）"><a href="#至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）" class="headerlink" title="至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）"></a>至于四次挥手…我决定偷个懒，来个一图胜千言（图片来自YouTube）</h3><p><img src="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/image-20220321233351983.png" alt="image-20220321233351983"></p>
+            <p>最近在学习SSH的时候，我有个困惑，下面的这个界面，出现了无数次，但是从没认真了解过，小记一下</p>
+<p><img src="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/image-20220331222254321-16487365808101.png" alt="image-20220331222254321"></p>
+<p>为啥要给我看这么个指纹，这个指纹又是什么。</p>
+<p>首先</p>
+<h6 id="什么是指纹"><a href="#什么是指纹" class="headerlink" title="什么是指纹"></a>什么是指纹</h6><p>指纹是根据公钥信息生成的，简短的想证明<strong>”他是他“</strong>的东西</p>
+<h6 id="怎么知道他是根据公钥生成的呢"><a href="#怎么知道他是根据公钥生成的呢" class="headerlink" title="怎么知道他是根据公钥生成的呢"></a>怎么知道他是根据公钥生成的呢</h6><p>注意上面图片的指纹信息了么，他是这样的（以下使用都是ssh到本机进行模拟）</p>
+<p><img src="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/image-20220331223101569-16487370632612.png" alt="image-20220331223101569"></p>
+<p>那么现在让我们生成一下他</p>
+<p><img src="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/image-20220331223200394-16487371217923.png" alt="image-20220331223200394"></p>
+<p>不觉得熟悉么，这不是一摸一样么，现在再来看看我们在进行ssh连接时保存下来的公钥信息和服务端本身的公钥信息（存在$HOME&#x2F;.ssh&#x2F;known_hosts，下次登录发现这里有就不会警告了）</p>
+<p><img src="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/image-20220331223649261-16487374103744.png" alt="image-20220331223649261"></p>
+<p>实际上就是把公钥发来了，然后就是用户用公钥加密账号密码，服务端再私钥解密，密码正确–&gt;同意登录，扯远了，继续说指纹的事，用ssh-keyscan再多次一举一下</p>
+<p><img src="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/image-20220331225023418-16487382247505.png" alt="image-20220331225023418"></p>
+<p>看，还是他。</p>
 
         </div>
 
@@ -258,10 +251,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/">关于SSH指纹的一点记录</a>
             
-            
-            <a class="next" rel="next" href="/2022/03/20/Section-1-Networking-Concepts/">Section 1 Networking Concepts(Professor Messer’s CompTIA N10-008 Network+ Course)</a>
+            <a class="next" rel="next" href="/2022/03/21/TCP%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E5%BC%80%E5%B0%8F%E8%AE%B0/">TCP连接与断开小记</a>
             
         </section>
 
