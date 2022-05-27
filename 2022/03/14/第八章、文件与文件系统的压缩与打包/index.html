@@ -13,10 +13,16 @@
         <meta name="description" content="认识Linux文件系统
 
 Linux中常见的压缩命令：zip，gzip（zcat），bzip2（bzcat），其中后两个共同的选项（-d：解压缩；-c 保留源文件压缩）
+
 打包命令：tar
+
 备份
+
 dump
-dd：dd if&amp;#x3D;&amp;#x2F;dev&amp;#x2F;sda3 of&amp;#x3D;test 即">
+
+dd：dd if&amp;#x3D;&amp;#x2F;dev&amp;#x2F;sda3 of&amp;#x3D;test 即可
+
+cpio：压缩：find .&amp;#x2F;Try -name ‘host*’ | cpio -o &amp;gt; xx.cpio,解压缩：cpio -iu &amp;lt; xx.cpio">
     
 
     <!--Author-->
@@ -170,12 +176,18 @@ dd：dd if&amp;#x3D;&amp;#x2F;dev&amp;#x2F;sda3 of&amp;#x3D;test 即">
         <!-- Post Content -->
         <p>认识Linux文件系统</p>
 <ul>
-<li>Linux中常见的压缩命令：zip，gzip（zcat），bzip2（bzcat），其中后两个共同的选项（-d：解压缩；-c 保留源文件压缩）</li>
-<li>打包命令：tar</li>
-<li>备份<ul>
-<li>dump</li>
-<li>dd：dd if&#x3D;&#x2F;dev&#x2F;sda3 of&#x3D;test 即可</li>
-<li>cpio：压缩：find .&#x2F;Try -name ‘host*’ | cpio -o &gt; xx.cpio,解压缩：cpio -iu &lt; xx.cpio</li>
+<li><p>Linux中常见的压缩命令：zip，gzip（zcat），bzip2（bzcat），其中后两个共同的选项（-d：解压缩；-c 保留源文件压缩）</p>
+</li>
+<li><p>打包命令：tar</p>
+</li>
+<li><p>备份</p>
+<ul>
+<li><p>dump</p>
+</li>
+<li><p>dd：dd if&#x3D;&#x2F;dev&#x2F;sda3 of&#x3D;test 即可</p>
+</li>
+<li><p>cpio：压缩：find .&#x2F;Try -name ‘host*’ | cpio -o &gt; xx.cpio,解压缩：cpio -iu &lt; xx.cpio </p>
+<span id="more"></span></li>
 </ul>
 </li>
 </ul>

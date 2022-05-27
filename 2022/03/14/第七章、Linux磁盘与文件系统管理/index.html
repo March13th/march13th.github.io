@@ -12,15 +12,35 @@
     
         <meta name="description" content="认识Linux文件系统
 磁盘组成及分区复习(正好给自己提几个问题)
+
 什么是扇区，有哪两种格式
+
 扇区(Sector)为最小的物理储存单位，且依据磁盘设计的不同，目前主要有 512bytes 与 4K 两种格式；
 
 
 什么是磁柱
+
 将扇区组成一个圆，那就是磁柱(Cylinder)；
 
 
-磁盘分区表的两种格">
+磁盘分区表的两种格式
+
+磁盘分区表主要有两种格式，一种是限制较多的 MBR 分区表，一种是较新且限制较少的 GPT 分区表。
+
+
+MBR第一个扇区由什么组成呢
+
+MBR 分区表中，第一个扇区最重要，里面有： (1)主要开机区(Master boot record, MBR)及分区表(partitiontable)， 其中 MBR 占有 446 bytes，而 partition table 则占有 64 bytes。
+
+
+实体磁盘的文件名是什么
+
+&amp;#x2F;dev&amp;#x2F;sd[a-p][1-128]
+
+
+虚拟磁盘的文件名是什么
+
+&amp;#x2F;dev&amp;#x2F;vd[a-d][1-128]">
     
 
     <!--Author-->
@@ -174,34 +194,43 @@
         <!-- Post Content -->
         <ul>
 <li>认识Linux文件系统<ul>
-<li>磁盘组成及分区复习(正好给自己提几个问题)<ul>
-<li>什么是扇区，有哪两种格式<ul>
+<li><p>磁盘组成及分区复习(正好给自己提几个问题)</p>
+<ul>
+<li><p>什么是扇区，有哪两种格式</p>
+<ul>
 <li>扇区(Sector)为最小的物理储存单位，且依据磁盘设计的不同，目前主要有 512bytes 与 4K 两种格式；</li>
 </ul>
 </li>
-<li>什么是磁柱<ul>
+<li><p>什么是磁柱</p>
+<ul>
 <li>将扇区组成一个圆，那就是磁柱(Cylinder)；</li>
 </ul>
 </li>
-<li>磁盘分区表的两种格式<ul>
+<li><p>磁盘分区表的两种格式</p>
+<ul>
 <li>磁盘分区表主要有两种格式，一种是限制较多的 MBR 分区表，一种是较新且限制较少的 GPT 分区表。</li>
 </ul>
 </li>
-<li>MBR第一个扇区由什么组成呢<ul>
+<li><p>MBR第一个扇区由什么组成呢</p>
+<ul>
 <li>MBR 分区表中，第一个扇区最重要，里面有： (1)主要开机区(Master boot record, MBR)及分区表(partition<br>table)， 其中 MBR 占有 446 bytes，而 partition table 则占有 64 bytes。</li>
 </ul>
 </li>
-<li>实体磁盘的文件名是什么<ul>
+<li><p>实体磁盘的文件名是什么</p>
+<ul>
 <li>&#x2F;dev&#x2F;sd[a-p][1-128]</li>
 </ul>
 </li>
-<li>虚拟磁盘的文件名是什么<ul>
-<li>&#x2F;dev&#x2F;vd[a-d][1-128]</li>
+<li><p>虚拟磁盘的文件名是什么</p>
+<ul>
+<li><p>&#x2F;dev&#x2F;vd[a-d][1-128]    </p>
+<span id="more"></span></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>文件系统特性<ul>
+<li><p>文件系统特性</p>
+<ul>
 <li><strong>什么是格式化</strong>，(我以前只是觉得是清空哈哈哈哈，还真没想过)，每种操作系统所设定的文件属性和权限并不相同，格式化分区槽是为了让它变成系统能够使用的”文件系统格式”</li>
 <li><strong>文件系统</strong>通常将权限和属性放到inode中，实际数据放到data block区块中，另外有一个超级区块(superblock)会记录整个文件系统的整体信息(inode与block的总量呀，使用量呀，剩下多少呀，听起来像一个管家哈哈哈哈)</li>
 <li><strong>inode、block、superblock的简要概述</strong><ul>
@@ -216,12 +245,13 @@
 </li>
 </ul>
 </li>
-<li>Linux的Ext2文件系统(inode)</li>
+<li><p>Linux的Ext2文件系统(inode)</p>
+</li>
 </ul>
 <ul>
 <li>文件系统一开始就将inode与block规划好了，除非重新格式化or利用resize2fs等指令变更文件系统大小，否则inode和block就固定不再变动啦<ul>
 <li>关于区块群组<ul>
-<li>如果文件系统太大啦，那么那么夺得inode与block都放在一起也不好管理，于是Ext2文件系统在格式化的时候会区分为多个区块群组，而每个群组都有独立的inode、block、superblock系统<br><img src="/2022/03/14/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81Linux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/1240.png"></li>
+<li>如果文件系统太大啦，那么那么夺得inode与block都放在一起也不好管理，于是Ext2文件系统在格式化的时候会区分为多个区块群组，而每个群组都有独立的inode、block、superblock系统<br><img src="/1240.png"></li>
 <li>接上图，文件系统最前面有一个启动扇区(boot sector)可安装开机管理程序，所以我们才能由多重引导呀！</li>
 </ul>
 </li>

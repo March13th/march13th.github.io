@@ -15,7 +15,9 @@
 
 正常的实体机器大概使用的都是 &amp;#x2F;dev&amp;#x2F;sd[a-] 的磁盘文件名，至于虚拟机环境底下，为了加速，可能就会使用 &amp;#x2F;dev&amp;#x2F;vd[a-p] 这种装置文件名
 
-SATA&amp;#x2F;USB 接口的磁盘根本就没有一定">
+SATA&amp;#x2F;USB 接口的磁盘根本就没有一定的顺序，那如何决定他的装置文件名呢？ 根据 Linux 核心侦测到磁盘的顺序来决定文件名,这里鸟哥举了一个例题，“两个SATA硬盘和一个U盘插在主板上，SATA硬盘分别插在SATA1、SATA5上，问三个磁盘在linux中的文件名”，答“和插槽号没有关系,根据 Linux 核心侦测到磁盘的顺序来决定文件名,所以分别是&amp;#x2F;dev&amp;#x2F;sda、&amp;#x2F;dev&amp;#x2F;sdb、&amp;#x2F;dev&amp;#x2F;sdc(开机完成后才被捕捉到)”
+
+磁盘盘上面又可细分出扇区(Sector)与磁道(Track)两种单位， 其中扇区的物理量设计有两种大小，分别是 512bytes 与 4Kbytes。">
     
 
     <!--Author-->
@@ -176,7 +178,7 @@ SATA&amp;#x2F;USB 接口的磁盘根本就没有一定">
 <li><p>SATA&#x2F;USB 接口的磁盘根本就没有一定的顺序，那如何决定他的装置文件名呢？<br> <em>根据 Linux 核心侦测到磁盘的顺序来决定文件名,这里鸟哥举了一个例题，“两个SATA硬盘和一个U盘插在主板上，SATA硬盘分别插在SATA1、SATA5上，问三个磁盘在linux中的文件名”，答“和插槽号没有关系,<strong>根据 Linux 核心侦测到磁盘的顺序来决定文件名</strong>,所以分别是&#x2F;dev&#x2F;sda、&#x2F;dev&#x2F;sdb、&#x2F;dev&#x2F;sdc(开机完成后才被捕捉到)”</em></p>
 </li>
 <li><p>磁盘盘上面又可细分出扇区(Sector)与磁道(Track)两种单位， 其中扇区的物理量设计有两种大小，分别是 512bytes 与 4Kbytes。</p>
-</li>
+  <span id="more"></span></li>
 </ul>
 </li>
 <li><p>##MSDOS(MBR) 与 GPT 磁盘分区表(partition table)</p>

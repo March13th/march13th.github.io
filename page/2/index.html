@@ -162,12 +162,18 @@
             <ul>
 <li>首次登入系统<ul>
 <li>首次登录CentOS 7.x系统注意事项<ul>
-<li>若安装时没有设置切换输入法的快捷键，那么[设置–&gt;键盘]可设置</li>
-<li>调整背光时间，那么[设置–&gt;电源]可设置</li>
-<li>设置工作区数量及CTRL+ALT+backspace重启动x窗口，那么[应用程序–&gt;工具–&gt;优化工具]</li>
-<li>x window与文本模式切换：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      1.CTRL+ALT+F2-F6：文本模式</span><br><span class="line">      2.CTRL+ALT+F1：x window模式</span><br><span class="line">    * root用户的提示符为，一般用户的提示符为$</span><br><span class="line">---</span><br><span class="line">- 文本模式下指令下达</span><br><span class="line">  + 几个简单指令和热键</span><br><span class="line">    * 指令的 一般形式：command [-options] parameter1 parameter2...</span><br><span class="line">    * 显示目前所支持的语系：locale</span><br><span class="line">    * 修改语系</span><br></pre></td></tr></table></figure>
-  1.LANG&#x3D;en_US.UTF8,LANG只与输出信息有关<br>  2.export LC_ALL&#x3D;en_US.UTF8，如需要更改其他不同的信息，需同步更新LC_ALL</li>
-<li>基础指令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1. date，显示日期</span><br><span class="line">  2. cal，显示日历</span><br><span class="line">  3. bc，简单计算</span><br><span class="line"></span><br><span class="line">* 重要的几个热键</span><br></pre></td></tr></table></figure>
+<li><p>若安装时没有设置切换输入法的快捷键，那么[设置–&gt;键盘]可设置</p>
+</li>
+<li><p>调整背光时间，那么[设置–&gt;电源]可设置</p>
+</li>
+<li><p>设置工作区数量及CTRL+ALT+backspace重启动x窗口，那么[应用程序–&gt;工具–&gt;优化工具]</p>
+</li>
+<li><p>x window与文本模式切换：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">      1.CTRL+ALT+F2-F6：文本模式</span><br><span class="line">      2.CTRL+ALT+F1：x window模式</span><br><span class="line">      </span><br><span class="line">    * root用户的提示符为，一般用户的提示符为$</span><br><span class="line">    </span><br><span class="line">      &lt;!--more--&gt;</span><br><span class="line">---</span><br><span class="line">- 文本模式下指令下达</span><br><span class="line">  + 几个简单指令和热键</span><br><span class="line">    * 指令的 一般形式：command [-options] parameter1 parameter2...</span><br><span class="line">    * 显示目前所支持的语系：locale</span><br><span class="line">    * 修改语系</span><br></pre></td></tr></table></figure>
+<p>  1.LANG&#x3D;en_US.UTF8,LANG只与输出信息有关<br>  2.export LC_ALL&#x3D;en_US.UTF8，如需要更改其他不同的信息，需同步更新LC_ALL</p>
+</li>
+<li><p>基础指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1. date，显示日期</span><br><span class="line">  2. cal，显示日历</span><br><span class="line">  3. bc，简单计算</span><br><span class="line"></span><br><span class="line">* 重要的几个热键</span><br></pre></td></tr></table></figure>
 <ol>
 <li>TAB：</li>
 </ol>
@@ -256,39 +262,9 @@
 </li>
 <li><p>加入强制使用GPT分区表的安装参数</p>
 <ul>
-<li>如果硬盘容量小于2TB，系统会默认使用MBR模式来安装，在图中选中Install  CentOS 7后，tab键输入inst.gpt，可强制使用GPT分区表<br><img src="/2022/03/14/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E5%AE%89%E8%A3%85CentOS7-x/1240"></li>
-</ul>
-</li>
-<li><p>关于设备类型与文件系统</p>
-<ul>
-<li>设备类型<br>1.标准分区：分区槽，类似&#x2F;dev&#x2F;vda1<br>2.LVM：可弹性增加&#x2F;削减文件系统容量的设备设定<br>3.LVM简单配置：_<strong>不确定，但据我估计就是鸟哥说的LVM紧张供应</strong>_，LVM进阶版，与传统的LVM直接分配固定的容量不同，可让你在使用多少容量的时候才分配磁盘多少容量给你</li>
-<li>文件系统[实际格式化的时候，我们可以格式化成什么系统的意思]<br>1.ext2&#x2F;ext3&#x2F;ext4：linux早期适用文件系统，ext3&#x2F;ext4文件系统多了日志记录，对系统复原比较快速，由于磁盘容量越来越大，除非有特殊的设定需求，否则近来较少使用ext4了<br>2.swap：将磁盘仿真成内存，swap不会用到目录树的挂载，所以也不需要指定挂载点<br>3.bios boot：GPT分区表需用<br>4.xfs：目前CentOS预设的文件系统，最早由大型服务器所开发出来，对于大容量的磁盘管理非常好，格式化时也很快<br>5.vfat：同时被Linux和Windows所支持的文件系统，如果同时存在两个操作系统，可为数据的交换建立一个vfat的文件系统</li>
-</ul>
-</li>
-<li><p>安装笔记本电脑或其他类似PC计算机的参数</p>
-<ul>
-<li>笔记本电脑上面的硬件与一般计算机不怎么相同，可能导致无法顺利的安装Linux，需开机后按下tab输入以下选项[nofb apm&#x3D;off acpi&#x3D;off pci&#x3D;noacpi]</li>
-</ul>
-<p>1.nofb：取消显示器上面的缓冲存储器侦测，笔记本的显示器通常是整合的，Linux安装程序可能不能够检测到该显示器模块<br>2.apm：早期的电源管理模块<br>3.acpi：近期的电源管理模块</p>
-</li>
-<li><p>Tips</p>
-<ul>
-<li>安装过程中所选的项目包括root的密码…etc，会被记录到&#x2F;root&#x2F;anaconda-ks.cfg中，这个文件可以协助未来想重建一个一摸一样的系统时可参考该文件制作</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>重点回顾<ul>
-<li>在预设的情况下，安装的时候系统会要求你一定要分区出的两个分区为[&#x2F;和swap]</li>
-<li>CentOS 7 的预设文件系统为xfs</li>
-<li>一般要求swap是1.5-2倍的物理内存量，但即使没有swap依旧能够安装与运行Linux系统  </li>
-<li>设定时不要选择启动kdump，那是给核心开发者查阅宕机数据的</li>
-<li>软件磁盘阵列的文件名为[RAID:&#x2F;dev&#x2F;md[0-127]]</li>
-</ul>
-</li>
-</ul>
-
+<li><p>如果硬盘容量小于2TB，系统会默认使用MBR模式来安装，在图中选中Install  CentOS 7后，tab键输入inst.gpt，可强制使用GPT分区表<br><img src="/2022/03/14/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E5%AE%89%E8%A3%85CentOS7-x/1240"></p>
         </div>
+        <a href="/2022/03/14/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E5%AE%89%E8%A3%85CentOS7-x/" class="read-more">Read More</a>
     
 
 </div>
@@ -326,91 +302,8 @@
 <li><p>SATA&#x2F;USB 接口的磁盘根本就没有一定的顺序，那如何决定他的装置文件名呢？<br> <em>根据 Linux 核心侦测到磁盘的顺序来决定文件名,这里鸟哥举了一个例题，“两个SATA硬盘和一个U盘插在主板上，SATA硬盘分别插在SATA1、SATA5上，问三个磁盘在linux中的文件名”，答“和插槽号没有关系,<strong>根据 Linux 核心侦测到磁盘的顺序来决定文件名</strong>,所以分别是&#x2F;dev&#x2F;sda、&#x2F;dev&#x2F;sdb、&#x2F;dev&#x2F;sdc(开机完成后才被捕捉到)”</em></p>
 </li>
 <li><p>磁盘盘上面又可细分出扇区(Sector)与磁道(Track)两种单位， 其中扇区的物理量设计有两种大小，分别是 512bytes 与 4Kbytes。</p>
-</li>
-</ul>
-</li>
-<li><p>##MSDOS(MBR) 与 GPT 磁盘分区表(partition table)</p>
-<ul>
-<li><p>早期为了兼容windows磁盘使用的是支持windows的MBR(master boot record)来处理开机管理程序和分区表，开机管理程序和分区表通通放在第一个扇区，扇区通常是512bytes大小，所以第一个扇区会有以下两个数据：<br>  <em><strong>主要启动记录区(Master Boot Record, MBR)：可以安装开机管理程序的地方，有 446 bytes</strong></em><br>  <em><strong>分区表(partition table)：记录整颗硬盘分区的状态，有 64 bytes</strong></em></p>
-</li>
-<li><p>分区表所在区块只有64bytes，所以最多分四组记录区（16字节一个），每组记录区记录了该区段的起始于结束的磁柱号码<img src="/2022/03/14/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/1240-164719391504163.png"><br>（这张图真的是生动形象，鸟哥大赞）<br>假设上图中的硬盘文件名为&#x2F;dev&#x2F;sda1时，那么这四个分区在linux系统中的文件名为（_<strong>档名后会再接一个数字，这个数字与分区的位置是有关的，真的很有意思</strong>_)<br>P1：&#x2F;dev&#x2F;sda1<br>P2：&#x2F;dev&#x2F;sda2<br>P3：&#x2F;dev&#x2F;sda3<br>P4：&#x2F;dev&#x2F;sda4</p>
-</li>
-<li><p>由上得到几点重要启示<br> 1.其实所谓的『分区』只是针对那个 64 bytes 的分区表进行设定而已！<br> 2.硬盘默认的分区表仅能写入四组分区信息<br> 3.这四组分区信息我们称为主要(Primary)或延伸(Extended)分区槽<br> 4.分区槽的最小单位『通常』为磁柱(cylinder)<br> 5.当系统要写入磁盘时，一定会参考磁盘分区表，才能针对某个分区槽进行数据的处理</p>
-</li>
-<li><p>分区的意义<br> 1.数据的安全性<br> 2.系统的效能考虑 (我要读取xx数据，只需要读取该分区的磁柱区间即可)</p>
-</li>
-<li><p>延伸分区<br>1.延伸分区的目的是使用额外的扇区来记录分区信息，延伸分区本身并不能被拿来格式化<br>2.逻辑分区槽(延伸分区继续切出来的分区槽)的名称号码由5号开始(eg：P1:&#x2F;dev&#x2F;sda1，P2:&#x2F;dev&#x2F;sda2，<strong>L1:&#x2F;dev&#x2F;sda5</strong>)这是因为前四个号码都保留给主分区或者扩展分区了</p>
-</li>
-<li><p>MBR、主要分区、延伸分区、逻辑分区特性的简单定义</p>
-</li>
-</ul>
-<pre><code>1.主要分区与延伸分区最多可以有4笔(硬盘限制)
-2.延伸分区最多只能有一个(操作系统的限制)
-3.逻辑分区是由延伸分区持续切割出的分区槽
-4.能够被格式化后，作为数据存取的分区槽为主要分区与逻辑分区，延伸分区无法被格式化
-5.逻辑分区的数量因操作系统而不同
-</code></pre>
-<ul>
-<li>MBR的局限<br>1.操作系统无法抓取到2.2T以上的内容<br>2.MBR仅有一个区块，如损坏后无法或很难救援<br>3.MBR内存放开机管理程序的区块仅446bytes，无法容纳较多的程序代码<br><strong>补充说明</strong>，为什么无法抓取到2.2T以上的磁盘容量呢，首先16个字节的分区信息中都有什么呢，16个字节的分区信息保存有分区活动状态标志、文件系统标识、起止柱面号、磁头号、扇区号、起始扇区位置（4个字节）、分区总扇区数目（4个字节）等内容。这里最重要的是：分区的起始扇区位置与分区的总扇区数，都是用4个字节表示的，而这一分区最大能表示2的32次方的扇区个数，按每扇区512字节计算，每个分区最大不能超过2TB。磁盘容量超过2TB以后，分区的起始位置也就无法表示</li>
-</ul>
-</li>
-<li><p>##GUID partition table，GPT磁盘分区表</p>
-<ul>
-<li><p>为了兼容所有的磁盘，在扇区的定义上，大多使用LBA(Logical Block Address 逻辑区块地址)来处理，GPT将磁盘所有区块以此LBA(预设为512bytes)来规划，由LBA0开始编号</p>
-</li>
-<li><p>MBR仅使用第一个512bytes去开来记录，GPT使用了34个LBA区块来记录分区信息<br>  <img src="/2022/03/14/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/1240.png"></p>
-</li>
-<li><p>LBA0(MBR相容区块)<br>分为两部分<br>1.446bytes储存第一阶段的开机管理程序<br>2.原本分区表的记录区内，这个兼容模式仅放入一个特殊标志的分区(表示老子这个磁盘是GPT格式，不认识GPT分区表的磁盘管理程序请走开)</p>
-</li>
-<li><p>LBA1(GPT 表头记录)<br>1.记录了分区表本身的位置与大小<br>2.记录了备份用GPT分区的位置<br>3.放置了分区表的检验机制码,操作系统以此来判断GPT正确性，若错误，则透过此记录区取得备份的GPT回复GPT 的正常运作</p>
-</li>
-<li><p>LBA2-33(实际记录分区信息处)<br>从LBA2开始，每个LBA可记录4比分区记录，默认情况下可有4*32比分区记录，每笔记录中分别提供64bits来记录开始&#x2F;结束扇区号码</p>
-</li>
-<li><p>注意<br>1.磁盘管理工具fdisk不认识GPT,需使用gdisk或parted指令<br>2.grub第一版不认识GPT，grub2后认识</p>
-</li>
-</ul>
-</li>
-<li><p>##开机流程中的BIOS与UFFI开机检测程序</p>
-<ul>
-<li><p>大致开机流程<br>1.BIOS：开机主动执行的程序(根据设定取得能够开机的硬盘，并到该硬盘读取第一个扇区的MBR位置)<br>2.MBR：主要启动记录区块，内含开机管理程序<br>3.开机管理程序(boot loader)：一个可读取核心文件来执行软件<br>4.核心文件，开始操作系统的功能…</p>
-</li>
-<li><p>LBA0仅提供第一阶段开机管理程序代码，如果使用类似grub的的开机管理程序，需额外分出一个BIOS boot的分区槽防止其他开机过程中的其他代码，CentOS中通常占用2MB</p>
-</li>
-<li><p>boot loader的主要任务<br>1.提供选项：用户可选择不同的开机项目，这也是多重引导的重要功能<br>2.载入核心文件：直接指向可开机的程序区段开始操作系统<br>3.转交其他loader：将开机管理功能转交给其他loader(开机管理程序除了可以安装在MBR，还可以安装再每个分区槽的启动扇区(boot sector))–造就了多重引导功能</p>
-</li>
-<li><p>多重引导工作的总结<br>1.每个分区槽都拥有自己的启动扇区(boot sector)<br>2.实际可开机的核心文件是放置到各分区槽的<br>3.loader只认识自己系统槽内的可开机核心文件以及其他loader<br>4.loader可直接指向或者是间接将管理权移交给另一个管理程序<br>5.多重引导为什么先安装windows再安装linux呢，因为windows安装程序会主动覆盖MBR及自己所在分区槽的启动扇区，并没有提供给我们选择的功能   </p>
-</li>
-<li><p>UFFI BIOS搭配GPT开机流程(用到再说)<br>  <img src="/2022/03/14/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/1240-164719392258066.png"></p>
-</li>
-</ul>
-</li>
-<li><p>##linux安装模式下，磁盘分区的选择</p>
-<ul>
-<li>文件系统与目录树的关系<br>1.挂载：利用一个目录当作进入点，将磁盘分区槽内的数据放置再该目录下，这个动作即为挂载，这个进入点即为挂载点</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>#安装Linux前的规划<br>   (没什么笔记，按需定制)</li>
-</ul>
-<hr>
-<ul>
-<li>#重点回顾<ul>
-<li>磁盘文件通常分为两种，实际SATA&#x2F;USB文件名为&#x2F;dev&#x2F;sd[a-p]，虚拟机中的文件名可能为&#x2F;dev&#x2F;vd[a-p]</li>
-<li>磁盘的第一个扇区主要记录两个重要信息<br>1.主要启动记录区(MBR)，446字节，可安装开机管理程序的地方<br>2.分区表(partition table)，64字节，记录整颗硬盘分区的状态</li>
-<li>磁盘的MBR分区方式中，主分区和扩展分区最多可以有4个，逻辑分区的文件名号码一定由5开始</li>
-<li>磁盘容量大于2TB时，系统会自动使用GPT分区方式来处理磁盘分区</li>
-<li>GPT分区无扩展分区与逻辑分区的概念，可假设所有分区都是主分区</li>
-<li>开机的流程:BIOS–&gt;MBR–&gt;boot loader–&gt;核心文件</li>
-<li>boot loader可以安装的地点有两个，MBR和boot sector</li>
-</ul>
-</li>
-</ul>
-
         </div>
+        <a href="/2022/03/14/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/" class="read-more">Read More</a>
     
 
 </div>
@@ -440,9 +333,8 @@
     
         <div class="content">
             <h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ls -t #sort by modification time, newest first</span><br><span class="line">man -k passwd #keyword search,Regular expressions can be used</span><br><span class="line">grep/sed/cut/awk</span><br><span class="line">comm #compare files</span><br><span class="line">usermod -L username #lock a user&#x27;s password</span><br><span class="line">passwd -l username #lock a user&#x27;s password</span><br><span class="line">change -E #lock a user&#x27;s password</span><br><span class="line">usermod -s #change the default shell of a user</span><br><span class="line">passwd --status username # confirm user&#x27;s account locked or not</span><br><span class="line">chage -l username #confirm that the account expired or not</span><br><span class="line">sudo -l # list the allowed commands for the current user</span><br><span class="line">su -l username -c &quot;command&quot; #execute a single command as the target user</span><br><span class="line">setuid/setgid</span><br><span class="line">ps -aux|sort -k4nr|head -4 #process memory usage</span><br><span class="line">tailf -f -n5</span><br><span class="line">sudo crontab -u [username] -l # list cron jobs that belong to a specific user</span><br><span class="line">apt update</span><br><span class="line">apt upgrade xxxxx #In order to upgrade a single package</span><br><span class="line">apt-cache search</span><br><span class="line">apt instal package_name</span><br><span class="line">apt remove --purge #remove all leftovers</span><br><span class="line">apt autoremove #removing package dependencies</span><br><span class="line">dpkg [-i(install)] xxx.deb</span><br><span class="line">dmesg #retrieve the kernel logs</span><br><span class="line">journalctl [-u]</span><br><span class="line">mount -t ext4</span><br><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line">sudo tcpdump -r arp_and_icmp.pcap arp </span><br><span class="line">sudo tcpdump -r arp_and_icmp.pcap not icmp</span><br></pre></td></tr></table></figure>
-
-<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">systeminfo # extracting detailed configuration information</span><br><span class="line">wmic: wmic qfe list brief #list patch</span><br><span class="line">powershell: Get-WmiObject -class win32_quickfixengineering #list patch</span><br><span class="line">sysinternals: psinfo /accepteula(first time use it)</span><br><span class="line">echo 2&gt; xxx.txt #Create an empty file</span><br><span class="line">del</span><br><span class="line">rmdir(/s option) </span><br><span class="line">rename(ren)</span><br><span class="line">move</span><br><span class="line">copy</span><br><span class="line">mklink #Create a symbolic link，/h option Create a hard link</span><br><span class="line">fsutil hardlink list xxx.txt #View link path</span><br><span class="line">dir /s *.exe /p</span><br><span class="line">forfiles /P C:\Windows /S /M notepad.exe /c &quot;cmd /c echo @PATH&quot; </span><br><span class="line">find /C &quot;content&quot; xxx.txt #count occurrences</span><br><span class="line">FIND /N /I &quot;content&quot; xxx.txt|FIND &quot;101&quot; #View 101 lines of content</span><br><span class="line">findstr /n .* xxx.txt|findstr &quot;^5[1-9] | ^6[0-9]&quot; #Find lines 51-69</span><br><span class="line">whoami /user #View current user sid</span><br><span class="line">net with no arguments #a list of subcommands as output</span><br><span class="line">net help #usage information</span><br><span class="line">net user /add username passwd #create a new local user </span><br><span class="line">net localgroup #retrieve local group information on our system.</span><br><span class="line">net localgroup Administrators user /add #add user to the Administrators group</span><br><span class="line"> net localgroup Administrators user /del #removing user from the Administrators group</span><br><span class="line">net user /del user #deleting the account.</span><br><span class="line">net accounts #display or set account policies.</span><br><span class="line"></span><br><span class="line">Cmd /c</span><br><span class="line">runas</span><br><span class="line"></span><br><span class="line">tasklist /fi &quot;USERNAME eq NT AUTHORITY\SYSTEM&quot; /fi &quot;STATUS eq running&quot;</span><br><span class="line">tasklist /fi &quot;imagename eq cmd.exe&quot; ========= tasklist |find &quot;cmd.exe&quot;</span><br><span class="line">taskkill /pid 66</span><br><span class="line">Vmic: wmic process where processid=7028 get parentprocessid #List the parent process of a process</span><br><span class="line">Powershell: Get-CimInstance Win32_Process -Filter &quot;name=&#x27;cmd.exe&#x27;&quot;|select parentprocessid  #List the parent process of a process</span><br><span class="line">sysinternals: pslist pkill+pid pssuspend listdlls</span><br><span class="line"></span><br><span class="line">reg query hkcu\software\microsoft\windows\currentversion\runonce</span><br><span class="line">reg delete hkcu\software\microsoft\windows\currentversion\run /va</span><br><span class="line">reg add hkcu\software\microsoft\windows\currentversion\run /v OneDrive /t REG_SZ /d &quot;C:\Users\username\AppData\Local\Microsoft\OneDrive\OneDrive.exe&quot;</span><br><span class="line">reg export hkcu\environment environment</span><br><span class="line"></span><br><span class="line">schtasks /change /tr C:\Users\username\Desktop\runasadmin.exe /tn RunAsSystem </span><br><span class="line">schtasks /query /tn RunAsSystem</span><br><span class="line">schtasks /run /tn RunAsSystem</span><br><span class="line">schtasks /create /tn binarycommandments /tr C:\Windows\System32\cmd.exe /sc onstart</span><br><span class="line"></span><br><span class="line">fsutil fsinfo drives【find all the drives on our machine with the drives subcommand】</span><br><span class="line">fsutil fsinfo drivetype c: 55</span><br><span class="line">fsutil fsinfo volumeinfo C:</span><br><span class="line"></span><br><span class="line">echo fileOne uses the default stream &gt; defaultStream.txt</span><br><span class="line">echo fileTwo uses the &#x27;xxx&#x27; stream &gt; xxxStream.txt:filexxx</span><br><span class="line">type defaultStream.txt</span><br><span class="line">type xxxStream.txt</span><br><span class="line">dir</span><br><span class="line">more &lt; xxxStream.txt:filexxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
         </div>
+        <a href="/2022/03/13/Summary-of-common-commands/" class="read-more">Read More</a>
     
 
 </div>
