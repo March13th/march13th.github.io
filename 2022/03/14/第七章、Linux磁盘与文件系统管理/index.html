@@ -1,158 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Head tag -->
 <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="author" content="March 13th">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
-
-<title>第七章、Linux磁盘与文件系统管理 | March 13th&#39;s Blog</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
+    <!--Description-->
     
-    <link rel="stylesheet" href="/css/style.css">
+        <meta name="description" content="认识Linux文件系统
+磁盘组成及分区复习(正好给自己提几个问题)
+什么是扇区，有哪两种格式
+扇区(Sector)为最小的物理储存单位，且依据磁盘设计的不同，目前主要有 512bytes 与 4K 两种格式；
+
+
+什么是磁柱
+将扇区组成一个圆，那就是磁柱(Cylinder)；
+
+
+磁盘分区表的两种格">
     
 
-
-
-    <!-- scripts list from _config.yml -->
+    <!--Author-->
     
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
+        <meta name="author" content="March 13th">
     
 
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="第七章、Linux磁盘与文件系统管理"/>
+    
 
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="March 13th&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
 
     
+        <meta name="twitter:card" content="summary" />
     
-        
+    
+    
+
+    <!-- Title -->
+    
+    <title>第七章、Linux磁盘与文件系统管理 - March 13th&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
     
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
 
+
 <body>
-    <script>
-        // this function is used to check current theme before page loaded.
-        (() => {
-            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
-            const isDark = currentTheme === 'dark';
-            const pagebody = document.getElementsByTagName('body')[0]
-            if (isDark) {
-                pagebody.classList.add('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
-            } else {
-                pagebody.classList.remove('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Light"
-            }
-        })();
-    </script>
 
-    <div class="wrapper">
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
         <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo"><a href="/">March 13th&#39;s Blog</a></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/category">Categories</a>
-                
-                    <a class="menu-item" href="/tag">Tags</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">March 13th&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/category">Categories</a>
-                
-                    <a class="menu-item" href="/tag">Tags</a>
-                
-            </div>
-        </div>
-    </nav>
-
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
 </header>
-<script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-        var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
-            mobileMenu.classList.remove("active")
-        }else{
-            toggleMenu.classList.add("active")
-            mobileMenu.classList.add("active")
-        }
-    }
-</script>
-            <div class="main">
-                <div class="container">
-    
-    
 
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">第七章、Linux磁盘与文件系统管理</h1>
+        <section class="main">
             
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">March 13th</a>
-                    
+<div class="post">
 
-                    
-                        <span class="post-time">
-                        Date: <a href="#">March 14, 2022&nbsp;&nbsp;0:20:07</a>
-                        </span>
-                    
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">鸟哥的Linux私房菜-读书笔记</a>
-                            
-                        </span>
-                    
-                </div>
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2022/03/14/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81Linux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+                第七章、Linux磁盘与文件系统管理
+            </a>
+        </h1>
+        <div class="post-info">
             
-        </header>
+                <span class="date">2022-03-14</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/鸟哥的Linux私房菜-读书笔记/">鸟哥的Linux私房菜-读书笔记</a>
+                </span>
+            
+        </div>
+    </div>
 
-        <div class="post-content">
-            <ul>
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <ul>
 <li>认识Linux文件系统<ul>
 <li>磁盘组成及分区复习(正好给自己提几个问题)<ul>
 <li>什么是扇区，有哪两种格式<ul>
@@ -409,47 +429,154 @@ gdisk &#x2F;dev&#x2F;sda<br>几个常用的指令<br>d delete a partition  删�
 <p>挂载<br>挂载：标准格式：mount -o 选项 -t 文件系统，一般使用的就是mount 需挂载的设备 挂载点；解除挂载：umount 外部设备or挂载点；重新挂载eg：mount -o remount &#x2F;mnt（挂载）;几种选项，rw，ro，noexec，exec；解除挂载是可以使用fuser -mv 设备名称查看正在使用挂载点的程序<br>磁盘检验：fsck &#x2F;dev&#x2F;sda5(-f：强制自检；-C 显示过程)，badblocks  dev&#x2F;sda3<br>开机自动挂载：&#x2F;etc&#x2F;fstab 写入，blkid可以显示出所需要的uuid，同时注意1.文件系统不要写错了；2后面的两位数字，第一个为是否启动备份，第二个为是否使用fsck自检<br>磁盘参数修改：tune2fs<br>特殊设备挂载：镜像文件不可路就挂载使用，eg：mount -o loop 镜像 挂载点</p>
 <p>内存交换空间（swap）的构建<br>使用物理分区构建：就是常规的fdisk创建一个分区，记得了类型选对，格式化（mkswap），激活（swapon）<br>使用文件构建：dd if&#x3D;&#x2F;dev&#x2F;zero of&#x3D;file bs&#x3D;100M count&#x3D;100,然后格式化并激活</p>
 
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Linux/">#Linux</a>
         </div>
+    
 
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/Linux/"># Linux</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2022/03/14/%E7%AC%AC%E5%85%AB%E7%AB%A0%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%89%93%E5%8C%85/">第八章、文件与文件系统的压缩与打包</a>
-            
-            
-            <a class="next" rel="next" href="/2022/03/14/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81Linux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">第六章、Linux文件与目录管理</a>
-            
+    <!-- Comments -->
+    
+
+</div>
         </section>
 
-
-    </article>
+    </div>
 </div>
 
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    'If only I had ... ' If you ever have that thought ricocheting in your brain, it will hurt a lot.---Larry Smith《Why you will fail to have a great career》
+                </p>
             </div>
-            <footer id="footer" class="footer">
-    <div class="copyright">
-        <span>We r dreamers</span>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2022/05/07/3-Using-the-help-system/">3 Using the help system</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/05/07/%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8%E9%93%BE%E6%8E%A5/">博客记录及常用链接</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/04/10/%E7%AC%AC%E5%8D%81%E7%AB%A0%E3%80%81%E8%AE%A4%E8%AF%86%E5%92%8C%E5%AD%A6%E4%B9%A0BASH/">第十章、认识和学习BASH</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/03/31/%E5%85%B3%E4%BA%8ESSH%E6%8C%87%E7%BA%B9%E7%9A%84%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95/">关于SSH指纹的一点记录</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Professor-Messer%E2%80%99s-CompTIA-N10-008-Network-Course-notes/">Professor Messer’s CompTI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Learn-Windows-PowerShell-in-a-Month-of-Lunches-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">Learn Windows PowerShell </a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Precious/">Precious</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Triffle/">Triffle</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/March13th">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:sheldor13th@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 
-    </div>
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
 </body>
 
 </html>
