@@ -13,7 +13,10 @@
         <meta name="description" content="前言学习对于NFS进行信息收集，但是对于NFS着实不太了解，遂跟随《鸟哥的私房菜》了解一番
 NFS的由来和功能什么是 NFS ( Network FileSystem )
 可以通过网络、让不同的机器、不同的操作系统共享彼此的文件
-NFS服务器可以让我们将网络中远程的NFS服务器分享的目录挂载到本地端">
+
+NFS服务器可以让我们将网络中远程的NFS服务器分享的目录挂载到本地端的机器上，在本地看来，仿佛远程主机的目录就像自己的一个磁盘分区一样
+
+基本上NFS服务的端口开在2049，但是由于文件系统复杂，NFS还有其他的程序启动额外的端口（这是随机的，因为预设NFS用来传输的端口是小于1024的随机端口），客户端要想知道服务器端使用的是哪个端口，需要RPC (Remote Procedure Call) 来协助">
     
 
     <!--Author-->
@@ -167,9 +170,14 @@ NFS服务器可以让我们将网络中远程的NFS服务器分享的目录挂�
         <!-- Post Content -->
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习对于NFS进行信息收集，但是对于NFS着实不太了解，遂跟随《鸟哥的私房菜》了解一番</p>
 <h2 id="NFS的由来和功能"><a href="#NFS的由来和功能" class="headerlink" title="NFS的由来和功能"></a>NFS的由来和功能</h2><h4 id="什么是-NFS-Network-FileSystem"><a href="#什么是-NFS-Network-FileSystem" class="headerlink" title="什么是 NFS ( Network FileSystem )"></a>什么是 NFS ( Network FileSystem )</h4><ul>
-<li>可以通过网络、让不同的机器、不同的操作系统共享彼此的文件</li>
-<li>NFS服务器可以让我们将网络中远程的NFS服务器分享的目录挂载到本地端的机器上，在本地看来，仿佛远程主机的目录就像自己的一个磁盘分区一样</li>
-<li><strong>基本上NFS服务的端口开在2049，但是由于文件系统复杂，NFS还有其他的程序启动额外的端口（这是随机的，因为预设NFS用来传输的端口是小于1024的随机端口），客户端要想知道服务器端使用的是哪个端口，需要RPC (Remote Procedure Call) 来协助</strong><h4 id="什么是-RPC-Remote-Procedure-Call"><a href="#什么是-RPC-Remote-Procedure-Call" class="headerlink" title="什么是 RPC (Remote Procedure Call)"></a>什么是 RPC (Remote Procedure Call)</h4></li>
+<li><p>可以通过网络、让不同的机器、不同的操作系统共享彼此的文件</p>
+</li>
+<li><p>NFS服务器可以让我们将网络中远程的NFS服务器分享的目录挂载到本地端的机器上，在本地看来，仿佛远程主机的目录就像自己的一个磁盘分区一样</p>
+</li>
+<li><p><strong>基本上NFS服务的端口开在2049，但是由于文件系统复杂，NFS还有其他的程序启动额外的端口（这是随机的，因为预设NFS用来传输的端口是小于1024的随机端口），客户端要想知道服务器端使用的是哪个端口，需要RPC (Remote Procedure Call) 来协助</strong></p>
+<span id="more"></span></li>
+</ul>
+<h4 id="什么是-RPC-Remote-Procedure-Call"><a href="#什么是-RPC-Remote-Procedure-Call" class="headerlink" title="什么是 RPC (Remote Procedure Call)"></a>什么是 RPC (Remote Procedure Call)</h4><ul>
 <li><strong>RPC的主要功能</strong>：指定每个NFS功能对应的端口号，并且通知给客户端，是的客户端可以连接到正确的端口上</li>
 <li><strong>RPC是如何知道NFS的端口的</strong>：因为当服务器在启动NFS时会随机选取数个端口，并主动像RPC注册，因此RPC可以知道每个端口对应的NFS功能</li>
 <li>RPC是固定使用端口111来监听客户端需求的并向客户端响应正确的端口的</li>
