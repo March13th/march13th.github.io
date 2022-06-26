@@ -140,6 +140,68 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2022/03/14/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81Linux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+                第七章、Linux磁盘与文件系统管理
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2022-03-14</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/鸟哥的Linux私房菜-读书笔记/">鸟哥的Linux私房菜-读书笔记</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <ul>
+<li>认识Linux文件系统<ul>
+<li><p>磁盘组成及分区复习(正好给自己提几个问题)</p>
+<ul>
+<li><p>什么是扇区，有哪两种格式</p>
+<ul>
+<li>扇区(Sector)为最小的物理储存单位，且依据磁盘设计的不同，目前主要有 512bytes 与 4K 两种格式；</li>
+</ul>
+</li>
+<li><p>什么是磁柱</p>
+<ul>
+<li>将扇区组成一个圆，那就是磁柱(Cylinder)；</li>
+</ul>
+</li>
+<li><p>磁盘分区表的两种格式</p>
+<ul>
+<li>磁盘分区表主要有两种格式，一种是限制较多的 MBR 分区表，一种是较新且限制较少的 GPT 分区表。</li>
+</ul>
+</li>
+<li><p>MBR第一个扇区由什么组成呢</p>
+<ul>
+<li>MBR 分区表中，第一个扇区最重要，里面有： (1)主要开机区(Master boot record, MBR)及分区表(partition<br>table)， 其中 MBR 占有 446 bytes，而 partition table 则占有 64 bytes。</li>
+</ul>
+</li>
+<li><p>实体磁盘的文件名是什么</p>
+<ul>
+<li>&#x2F;dev&#x2F;sd[a-p][1-128]</li>
+</ul>
+</li>
+<li><p>虚拟磁盘的文件名是什么</p>
+<ul>
+<li><p>&#x2F;dev&#x2F;vd[a-d][1-128]    </p>
+        </div>
+        <a href="/2022/03/14/%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81Linux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2022/03/14/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81Linux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">
                 第六章、Linux文件与目录管理
             </a>
@@ -473,6 +535,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2022/06/26/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/">汇编语言-第二章-寄存器</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2022/06/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">汇编语言 第一章 基础知识</a>
             </li>
             
@@ -482,10 +548,6 @@
             
             <li>
                 <a class="footer-post" href="/2022/05/07/3-Using-the-help-system/">3 Using the help system</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2022/05/07/%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8%E9%93%BE%E6%8E%A5/">博客记录及常用链接</a>
             </li>
             
         </ul>
