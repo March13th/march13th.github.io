@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="内存中字的存储
+字单元：即存放一个字型数据（16位）的内存单元，由两个地址连续的内存单元组成。高地址内存单元存放字型数据的高位字节，低地址内存单元存放字型数据的低位字节。
+CPU中，用16位寄存器来存储一个字。高8位存高位字节，低8位存低位字节。
+后面把起始地址为N的字单元简称为N地址字单元。
+
+DS和[address]
+8086CPU中有一个DS寄存器，通常用来存放要访问数据的段地址。
+将一个内存单元的内容送入一个寄存器，mov al,[0]【[…]表示一个内存单元，[…]中的数字表示内存单元的偏移地址，指令执行时8086CPU自动取ds中的数据为内存单元的段地址，注意8086CPU不支持将数据直接送入段寄存器的操作，ds是一个段寄存器，mov ds,1000H这个指令是非法的，只能用一个寄存器中转，也就是类似mov ds,ax】">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="March 13th">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="汇编语言-第三章-寄存器（内存访问）"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="March 13th&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>汇编语言-第三章-寄存器（内存访问） - March 13th&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/">
+                汇编语言-第三章-寄存器（内存访问）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2022-06-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/汇编语言读书笔记/">汇编语言读书笔记</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h3><ul>
+<li>字单元：即存放一个字型数据（16位）的内存单元，由两个地址连续的内存单元组成。高地址内存单元存放字型数据的高位字节，低地址内存单元存放字型数据的低位字节。</li>
+<li>CPU中，用16位寄存器来存储一个字。<strong>高8位存高位字节，低8位存低位字节。</strong></li>
+<li>后面把起始地址为N的字单元简称为N地址字单元。</li>
+</ul>
+<h3 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和[address]"></a>DS和[address]</h3><ul>
+<li>8086CPU中有一个DS寄存器，通常用来存放要访问数据的段地址。</li>
+<li>将一个内存单元的内容送入一个寄存器，mov al,[0]【[…]表示一个内存单元，[…]中的数字表示内存单元的偏移地址，指令执行时8086CPU自动取ds中的数据为内存单元的段地址，<strong>注意8086CPU不支持将数据直接送入段寄存器的操作，ds是一个段寄存器，mov ds,1000H这个指令是非法的，只能用一个寄存器中转，也就是类似mov ds,ax</strong>】</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="字的传送"><a href="#字的传送" class="headerlink" title="字的传送"></a>字的传送</h3><ul>
+<li>8086CPU是16位结构，有16根数据线，一次可传送16位数据，mov只要给出16位的寄存器就可以进行16位数据的传送了【<strong>注意高低八位的问题，寄存器里是高前低后，但是内存中低前高后</strong>】</li>
+</ul>
+<h3 id="mov、add、sub指令"><a href="#mov、add、sub指令" class="headerlink" title="mov、add、sub指令"></a>mov、add、sub指令</h3><ul>
+<li>mov指令的几种形式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mov/add/sub 寄存器，数据</span><br><span class="line">mov/add/sub 寄存器，寄存器</span><br><span class="line">mov/add/sub 寄存器，内存单元</span><br><span class="line">mov/add/sub 内存单元，寄存器</span><br><span class="line">mov 段寄存器，寄存器</span><br><span class="line">mov 寄存器，段寄存器</span><br><span class="line">mov 内存单元，段寄存器</span><br><span class="line">mov 段寄存器，内存单元</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="数据段"><a href="#数据段" class="headerlink" title="数据段"></a>数据段</h3><ul>
+<li>我们可以将一组长度为N（&lt;&#x3D;64KB）地址连续、起始地址为16的倍数的内存单元当作专门存储数据的内存空间，从而定义了一个数据段。比如定义123B0H-123B9H是一个数据段，段地址就是123BH，长度为10字节</li>
+</ul>
+<h3 id="检测点3-1"><a href="#检测点3-1" class="headerlink" title="检测点3.1"></a>检测点3.1</h3><p><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-165659383251521.png" alt="检测点3.1"><br><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800771.png" alt="检测点3.1"></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ul>
+<li>作者说的是，对栈的研究仅限于此角度：栈是一种具有特殊的访问方式的存储空间（特殊性在于LIFO-last in first out）</li>
+<li>入栈和出栈：栈的两个基本操作是入栈和出栈<ol>
+<li>入栈就是将一个新的元素放到栈顶</li>
+<li>出栈就是从栈顶取出一个元素</li>
+</ol>
+</li>
+</ul>
+<h3 id="CPU提供的栈机制"><a href="#CPU提供的栈机制" class="headerlink" title="CPU提供的栈机制"></a>CPU提供的栈机制</h3><ul>
+<li>8086CPU的入栈、出栈指令：PUSH(入栈)和POP(出栈)</li>
+<li>8086的入栈和出栈操作都是以<strong>字</strong>为单位的</li>
+<li>一个问题，<strong>CPU如何知道某段空间，例如10000H~1000FH被当作栈使用？</strong>：答案就是使用段寄存器SS和寄存器SP，<strong>任意时刻，SS:SP指向栈顶元素</strong><br><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800772-165659387061123.png" alt="此处有疑问"></li>
+</ul>
+<h3 id="栈顶超界的问题"><a href="#栈顶超界的问题" class="headerlink" title="栈顶超界的问题"></a>栈顶超界的问题</h3><ul>
+<li>当栈满的时候在使用push指令入栈，or在栈空的时候使用pop指令出栈，都会发生栈顶超界问题<br><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800783-165659387671225.png" alt="栈顶超界"></li>
+</ul>
+<h3 id="push、pop指令"><a href="#push、pop指令" class="headerlink" title="push、pop指令"></a>push、pop指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push/pop 寄存器/段寄存器/内存单元</span><br></pre></td></tr></table></figure>
+<ul>
+<li>push指令的执行步骤：SP&#x3D;SP-2 –&gt;向SS:SP指向的字单元中送入数据</li>
+<li>pop指令的执行步骤：从SS:SP指向的字单元中读取数据–&gt;SP&#x3D;SP+2</li>
+</ul>
+<h3 id="栈段"><a href="#栈段" class="headerlink" title="栈段"></a>栈段</h3><ul>
+<li>段的综述：<ol>
+<li>对于数据段，段地址放在DS中，用mov、add、sub等访问内存单元的指令时，CPU就将定义的数据段中的内容当作数据访问</li>
+<li>对于代码段，将它的段地址放在DS中，将段中第一条指令的偏移地址放在IP中，这样CPU就将执行定义的代码段中的指令</li>
+<li>对于栈段，将他的段地址放在SS中，将栈顶单元的偏移地址放在SP中，CPU在需要进行栈操作时，就将定义的栈段当作栈空间使用</li>
+</ol>
+</li>
+</ul>
+<h3 id="检测点3-2"><a href="#检测点3-2" class="headerlink" title="检测点3.2"></a>检测点3.2</h3><p><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800784-165659388325627.png" alt="检测点3.2"><br><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800785.png" alt="检测点3.2"></p>
+<h3 id="实验2-用机器指令和汇编指令编程"><a href="#实验2-用机器指令和汇编指令编程" class="headerlink" title="实验2 用机器指令和汇编指令编程"></a>实验2 用机器指令和汇编指令编程</h3><ul>
+<li>预备知识：debug的使用<br>主要是学会使用d&#x2F;r&#x2F;e&#x2F;u&#x2F;a&#x2F;t</li>
+<li>实验任务<br><img src="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/1240-16565937800786.png" alt="实验任务"></li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/汇编语言/">#汇编语言</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    'If only I had ... ' If you ever have that thought ricocheting in your brain, it will hurt a lot.---Larry Smith《Why you will fail to have a great career》
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2022/06/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89/">汇编语言-第三章-寄存器（内存访问）</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/06/26/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/">汇编语言-第二章-寄存器</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/06/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">汇编语言 第一章 基础知识</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2022/06/08/%E4%B8%BB%E5%8A%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-NFS/">主动信息收集-NFS</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Professor-Messer%E2%80%99s-CompTIA-N10-008-Network-Course-notes/">Professor Messer’s CompTI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Learn-Windows-PowerShell-in-a-Month-of-Lunches-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">Learn Windows PowerShell </a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Precious/">Precious</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/PENTEST/">PENTEST</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/March13th">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:sheldor13th@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
