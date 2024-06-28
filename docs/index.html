@@ -11,8 +11,7 @@
     </script>
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/theme.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="lightbox.css">
 
 </head>
 
@@ -62,65 +61,55 @@
     </div>
     <section class="mt-4 mb-5">
 
-        <div class="row">
-            <div class="card-columns">
-                <div class="card card-pin">
-                    <a href="1.jpg" data-toggle="lightbox"
-                       data-caption="This describes the image" data-gallery="example-gallery">
-                        <img class="card-img"
-                             src="1.jpg"
-                             alt="Card image" width="%50">
-                    </a>
-                </div>
+    	<div class="row">
+    		<div class="card-columns">
+    			<div class="card card-pin">
+					<a href="1.jpg" data-lightbox="1" data-title="My caption">
+    				<img class="card-img" src="1.jpg" alt="Card image">
+						</a>
+<!--    				<div class="overlay">-->
+<!--    					<h2 class="card-title title">Cool Title</h2>-->
+<!--    					<div class="more">-->
+<!--    						<a href="post.html">-->
+<!--    						<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>-->
+<!--    					</div>-->
+<!--    				</div>-->
+    			</div>
+    			<div class="card card-pin">
+					<a href="2.jpg" data-lightbox="2" data-title="My caption">
+    				<img class="card-img" src="2.jpg" alt="Card image">
+						</a>
+<!--    				<div class="overlay">-->
+<!--    					<h2 class="card-title title">Cool Title</h2>-->
+<!--    					<div class="more">-->
+<!--    						<a href="post.html">-->
+<!--    						<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>-->
+<!--    					</div>-->
+<!--    				</div>-->
+    			</div>
+    			<div class="card card-pin">
+					<a href="3.jpg" data-lightbox="3" data-title="My caption">
+    				<img class="card-img" src="3.jpg" alt="Card image">
+						</a>
+<!--    				<div class="overlay">-->
+<!--    					<h2 class="card-title title">Cool Title</h2>-->
+<!--    					<div class="more">-->
+<!--    						<a href="post.html">-->
+<!--    						<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>-->
+<!--    					</div>-->
+<!--    				</div>-->
+    			</div>
 
-                <div class="card card-pin">
-                    <a href="2.jpg" data-toggle="lightbox"
-                       data-caption="This describes the image" data-gallery="example-gallery">
-                        <img class="card-img"
-                             src="2.jpg"
-                             alt="Card image" width="%10">
-                    </a>
-
-                </div>
-
-                <div class="card card-pin">
-                    <a href="3.jpg" data-toggle="lightbox"
-                       data-caption="This describes the image" data-gallery="example-gallery">
-                        <img class="card-img"
-                             src="3.jpg"
-                             alt="Card image">
-                    </a>
-
-                </div>
-
-
-
-
-
-            </div>
-        </div>
-        </div>
+    		</div>
+    	</div>
     </section>
 
 </main>
 
 <script src="assets/js/app.js"></script>
 <script src="assets/js/theme.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-<script id="bs5-lightbox"></script>
-<script>
-    var lightboxScript = document.getElementById('bs5-lightbox');
-    var src = 'index.bundle.min.js'
-    var searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.has('local')) {
-        src = "../dist/index.js";
-    } else if (searchParams.has('github')) {
-        src = 'index.bundle.min.js';
-    }
-    lightboxScript.src = src;
-</script>
+<script src="lightbox-plus-jquery.js"></script>
+
 
 
 <footer class="footer pt-5 pb-5 text-center">
