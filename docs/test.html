@@ -1,0 +1,21 @@
+
+    <html>
+    <head>
+
+
+          <style>
+.max{width:100%;height:auto;}
+.min{width:100px;height:auto;}
+</style>
+    </head>
+
+<body>
+<img id='img' class='min' src='1.jpg' />
+</body>
+<script>
+$('#img').click(function(){
+$(this).toggleClass('min');
+$(this).toggleClass('max');
+});
+</script>
+</html>
